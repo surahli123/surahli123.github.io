@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiaying Li — Senior Data Scientist</title>
+
+    <!-- SEO & Social -->
+    <meta name="description" content="Senior Data Scientist specializing in search relevance, ranking, and multi-agent systems. 10+ years at Meta and Atlassian.">
+    <meta property="og:title" content="Jiaying Li — Senior Data Scientist">
+    <meta property="og:description" content="Search Relevance · Agent Builder · Product DS">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+    <!-- NAV -->
+    <nav>
+        <a class="name" href="#">Jiaying Li</a>
+        <div class="links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Search Relevance · Agent Builder · Product DS</h1>
+        <p class="intro">
+            Senior Data Scientist at Atlassian, focused on search relevance.
+            I've spent the last decade at Meta and Atlassian figuring out why search metrics move
+            and what to do about it. Recently I've been building agent systems
+            that automate the investigation work that used to take days.
+        </p>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="about" class="section">
+        <div class="rule"></div>
+        <div class="about">
+            <p>
+                I got into search because it sits at the intersection of everything I care about —
+                user behavior, ranking systems, and measurable outcomes. At Meta, I worked across
+                Facebook Search, Ads, and Reliability Infrastructure. The pattern I kept seeing:
+                smart people spending days on structured legwork that could be automated.
+            </p>
+            <p>
+                At Atlassian, I built their first Search Metric Analysis Agent to solve exactly that —
+                turning multi-day investigations into hours, with organic adoption across the org.
+                Then I rebuilt the concept independently as an open-source project with 706 tests
+                and a live demo, because I wanted to push the architecture further than a work project allows.
+            </p>
+            <p>
+                I think like a product manager but write code like an engineer. I care more about
+                whether a metric actually reflects user satisfaction than whether the model scores well on a benchmark.
+            </p>
+        </div>
+    </div>
+
+    <!-- FEATURED PROJECT: Search Metric Analyzer -->
+    <div id="projects" class="section-spacious">
+        <div class="rule"></div>
+        <h2 class="project-title">Search Metric Analyzer</h2>
+        <p class="project-tagline">
+            A multi-agent system that automates the hardest parts of search metric investigation.
+        </p>
+
+        <div class="project-body">
+            <p>
+                When a search quality metric drops, finding the root cause is genuinely hard. It crosses
+                multiple sub-systems, requires decomposition across enterprise segments, and needs
+                recognition of co-movement patterns that distinguish real regressions from noise. An
+                experienced engineer can spend days on a single investigation.
+            </p>
+            <p>
+                This system automates the structured legwork through a four-stage pipeline, built with
+                706 tests across 13 synthetic scenarios, using only PyYAML and pytest as dependencies.
+            </p>
+
+            <h4>How it works</h4>
+            <ul>
+                <li><strong>Decompose</strong> — Kitagawa-Oaxaca decomposition isolates which segments drove the movement</li>
+                <li><strong>Detect</strong> — Step-change detection and co-movement pattern matching across metrics</li>
+                <li><strong>Diagnose</strong> — Pattern archetype recognition with confidence scoring</li>
+                <li><strong>Format</strong> — Structured report with hypothesis evaluation and next steps</li>
+            </ul>
+
+            <h4>Architecture</h4>
+        </div>
+
+        <div class="arch">
+            <div class="arch-step">Deterministic Toolkit</div>
+            <div class="arch-step">Orchestrator</div>
+            <div class="arch-step">Specialist Agents</div>
+            <div class="arch-step">Web UI</div>
+        </div>
+
+        <div class="project-links">
+            <a href="https://search-metric-analyzer-demo.vercel.app/">Live Demo</a>
+            <a href="https://search-metric-analyzer-demo.vercel.app/presentation">Concept Presentation</a>
+            <a href="https://github.com/surahli123/search-metric-analyzer">Source Code</a>
+        </div>
+    </div>
+
+    <!-- OTHER PROJECTS -->
+    <div class="section">
+        <div class="rule"></div>
+
+        <div class="other-project">
+            <h3>Water Bottle Finance Analyzer</h3>
+            <p>
+                Enterprise finance analysis tool for a Chinese company's CEO. Built primarily with
+                OpenAI Codex — bilingual (English/Chinese) Excel-based analysis with privacy guardrails.
+            </p>
+            <div class="tech">Python · FastAPI · Pydantic · OpenAI Codex · <a href="https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&view=dashboard&state=normal">Live Demo</a></div>
+        </div>
+
+        <div class="other-project">
+            <h3>DS Productivity Agents</h3>
+            <p>
+                Plugin system for data science workflows — specialized skills for DS review and
+                search domain knowledge, with a built-in eval framework.
+            </p>
+            <div class="tech">Python · Claude Code · Plugin Architecture · <a href="https://github.com/surahli123/ds-productivity-agents">GitHub</a></div>
+        </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section-tight">
+        <div class="rule"></div>
+        <p class="skills-prose">
+            I work primarily in <strong>Python</strong> and <strong>SQL</strong>, with deep experience in
+            online metric measurement, search quality evaluation, query understanding,
+            A/B testing, causal inference, and incrementality testing. On the infrastructure side:
+            Spark, Hive, Airflow. More recently: LLMs, multi-agent system design, and building
+            with AI coding tools (Claude Code, OpenAI Codex).
+        </p>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact" class="section-tight">
+        <div class="rule"></div>
+        <div class="contact-links">
+            <a href="mailto:surah123@gmail.com">Email</a>
+            <a href="https://linkedin.com/in/surahli">LinkedIn</a>
+            <a href="https://github.com/surahli123">GitHub</a>
+        </div>
+    </div>
+
+    <div class="colophon">Mountain View, CA</div>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+/* ============================================
+   Portfolio — Jiaying Li
+   Minimal Engineer aesthetic
+   Source Serif 4 (headings) + IBM Plex Sans (body)
+   ============================================ */
+
+/* === Reset & Base === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    background: #f9f8f6;
+    color: #2d2d2d;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* === Page Container === */
+.page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+}
+
+/* === Navigation === */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 48px;
+}
+
+nav .name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+nav .links {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+}
+
+nav .links a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+nav .links a:hover {
+    color: #1a1a1a;
+}
+
+/* === Hero === */
+.hero {
+    padding-bottom: 72px;
+}
+
+.hero h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #111;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.hero .intro {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+    max-width: 520px;
+}
+
+/* === Section Rhythm ===
+   Varied spacing creates visual rhythm —
+   not the same padding everywhere */
+.section {
+    padding-bottom: 56px;
+}
+
+.section-tight {
+    padding-bottom: 36px;
+}
+
+.section-spacious {
+    padding-bottom: 80px;
+}
+
+/* Short horizontal rule — replaces section labels */
+.rule {
+    width: 32px;
+    height: 1.5px;
+    background: #ccc;
+    margin-bottom: 28px;
+}
+
+/* === About === */
+.about p {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 16px;
+}
+
+.about p:last-child {
+    margin-bottom: 0;
+}
+
+/* === Featured Project === */
+.project-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.project-tagline {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.project-body p {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 14px;
+}
+
+.project-body h4 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin: 28px 0 10px;
+}
+
+.project-body ul {
+    padding-left: 18px;
+    margin-bottom: 14px;
+}
+
+.project-body li {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+/* Architecture diagram — connected horizontal steps */
+.arch {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 20px 0 28px;
+    flex-wrap: wrap;
+}
+
+.arch-step {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+.arch-step:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.arch-step:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.arch-step + .arch-step {
+    border-left: none;
+}
+
+/* Project links — underlined text, not buttons */
+.project-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.project-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1.5px solid #1a1a1a;
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.project-links a:hover {
+    color: #666;
+    border-color: #666;
+}
+
+/* === Other Projects === */
+.other-project {
+    padding: 20px 0;
+}
+
+.other-project + .other-project {
+    border-top: 1px solid #eee;
+}
+
+.other-project h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.other-project p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.other-project .tech {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 6px;
+}
+
+.other-project a {
+    font-size: 13px;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.other-project a:hover {
+    border-color: #1a1a1a;
+}
+
+/* === Skills — prose paragraph, not tag grid === */
+.skills-prose {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* === Contact === */
+.contact-links {
+    display: flex;
+    gap: 28px;
+}
+
+.contact-links a {
+    font-size: 14px;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1px;
+}
+
+.contact-links a:hover {
+    border-color: #1a1a1a;
+}
+
+/* Footer */
+.colophon {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+    font-size: 12px;
+    color: #bbb;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+    .page {
+        padding: 40px 20px 80px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero .intro {
+        max-width: 100%;
+    }
+
+    /* Architecture stacks vertically on mobile */
+    .arch {
+        flex-direction: column;
+    }
+
+    .arch-step {
+        border-radius: 0;
+        border-left: 1px solid #ddd;
+    }
+
+    .arch-step:first-child {
+        border-radius: 4px 4px 0 0;
+    }
+
+    .arch-step:last-child {
+        border-radius: 0 0 4px 4px;
+    }
+
+    .arch-step + .arch-step {
+        border-top: none;
+        border-left: 1px solid #ddd;
+    }
+
+    /* Links wrap */
+    .project-links {
+        flex-wrap: wrap;
+    }
+
+    .contact-links {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}
