@@ -1,165 +1,1063 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jiaying Li — Senior Data Scientist</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiaying Li — Senior Data Scientist</title>
+<meta name="description" content="Senior Data Scientist at Atlassian. Search relevance, ranking, and multi-agent systems. Decade at Meta and Atlassian. Open to Senior DS roles at AI-first companies.">
 
-    <!-- SEO & Social -->
-    <meta name="description" content="Senior Data Scientist specializing in search relevance, ranking, and multi-agent systems. 10+ years at Meta and Atlassian.">
-    <meta property="og:title" content="Jiaying Li — Senior Data Scientist">
-    <meta property="og:description" content="Search Relevance · Agent Builder · Product DS">
-    <meta property="og:type" content="website">
+<!-- Open Graph / Twitter (social cards) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jiaying Li — Senior Data Scientist">
+<meta property="og:description" content="Search relevance · Agent builder · Product DS. Decade at Meta and Atlassian.">
+<meta property="og:image" content="assets/sma-architecture.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jiaying Li — Senior Data Scientist">
+<meta name="twitter:description" content="Search relevance · Agent builder · Product DS.">
+<meta name="twitter:image" content="assets/sma-architecture.png">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   PROTOTYPE v2 — Jiaying Li portfolio
+   Live theme switcher (top-right) lets you compare:
+   - 4 accent colors
+   - Light / Dark mode
+   ============================================ */
 
-    <link rel="stylesheet" href="css/style.css">
+/* === CSS Variables (theme system) === */
+:root {
+    /* Default: terracotta (Claude-inspired) */
+    --accent: #D97757;
+    --accent-strong: #B85E42;
+    --accent-tint: rgba(217, 119, 87, 0.08);
+
+    /* Neutrals — light mode default */
+    --bg: #f9f8f6;
+    --bg-elevated: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-tertiary: #6a6a6a;
+    --border: #e5e3df;
+    --rule: #c8c5be;
+
+    /* Type scale (fluid where useful) */
+    --size-hero: clamp(48px, 6vw, 68px);
+    --size-h2: clamp(28px, 3vw, 36px);
+    --size-h3: 20px;
+    --size-body: 16px;
+    --size-small: 14px;
+    --size-micro: 12px;
+
+    /* Spacing scale (8px base) */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 48px;
+    --space-6: 64px;
+    --space-7: 96px;
+    --space-8: 128px;
+
+    /* Widths */
+    --width-prose: 640px;
+    --width-featured: 960px;
+    --width-page: 1100px;
+}
+
+/* Accent variants — switched via JS */
+[data-accent="terracotta"] {
+    --accent: #D97757;
+    --accent-strong: #B85E42;
+    --accent-tint: rgba(217, 119, 87, 0.08);
+}
+[data-accent="amber"] {
+    --accent: #B8781E;
+    --accent-strong: #8F5C14;
+    --accent-tint: rgba(184, 120, 30, 0.08);
+}
+[data-accent="burgundy"] {
+    --accent: #8C3A3A;
+    --accent-strong: #6B2828;
+    --accent-tint: rgba(140, 58, 58, 0.08);
+}
+[data-accent="ink"] {
+    --accent: #1a1a1a;
+    --accent-strong: #000000;
+    --accent-tint: rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+    --bg: #141211;
+    --bg-elevated: #1c1a18;
+    --text-primary: #f3efe9;
+    --text-secondary: #c9c3b8;
+    --text-tertiary: #8a857d;
+    --border: #2e2a26;
+    --rule: #3d3934;
+}
+
+/* Dark mode accent tweaks (slightly brighter) */
+[data-theme="dark"][data-accent="terracotta"] {
+    --accent: #E88868;
+    --accent-strong: #F4A183;
+    --accent-tint: rgba(232, 136, 104, 0.12);
+}
+[data-theme="dark"][data-accent="amber"] {
+    --accent: #D4932D;
+    --accent-strong: #E8AE4E;
+    --accent-tint: rgba(212, 147, 45, 0.12);
+}
+[data-theme="dark"][data-accent="burgundy"] {
+    --accent: #B85454;
+    --accent-strong: #D47070;
+    --accent-tint: rgba(184, 84, 84, 0.12);
+}
+[data-theme="dark"][data-accent="ink"] {
+    --accent: #f3efe9;
+    --accent-strong: #ffffff;
+    --accent-tint: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   YAN LIU-INSPIRED ADDITIONS
+   ============================================ */
+
+/* Giant name wordmark */
+.wordmark {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(64px, 11vw, 140px);
+    font-weight: 700;
+    letter-spacing: -4px;
+    line-height: 0.9;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    padding-top: var(--space-3);
+}
+.wordmark .accent-letter {
+    color: var(--accent);
+    font-style: italic;
+}
+
+/* Experience strip — company logos */
+.experience {
+    max-width: var(--width-featured);
+    margin: 0 auto var(--space-6);
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+.experience .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-3);
+}
+.experience-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+}
+.exp-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.exp-item .logo-wrap {
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+.exp-item .logo-img {
+    max-height: 34px;
+    max-width: 140px;
+    filter: brightness(0);
+    opacity: 0.9;
+}
+[data-theme="dark"] .exp-item .logo-img {
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+}
+.exp-item .role {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-top: 10px;
+}
+.exp-item .years {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+}
+
+/* Marquee ticker — scrolling domain keywords (full-viewport breakout) */
+.marquee {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    margin-bottom: var(--space-6);
+}
+.marquee-track {
+    display: flex;
+    gap: var(--space-3);
+    white-space: nowrap;
+    animation: marquee-scroll 50s linear infinite;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+.marquee-track span { display: inline-block; }
+.marquee-track .dot {
+    color: var(--accent);
+    font-weight: 400;
+    margin: 0 var(--space-2);
+    opacity: 0.6;
+}
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Respect reduced-motion preference (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    .terminal-body .line { animation: none; opacity: 1; transform: none; }
+    .terminal-body .cursor { animation: none; }
+    .demo-embed .live-dot { animation: none; }
+    .card:hover, .card-img-wrap img { transform: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+}
+
+/* ALL CAPS section headings (Yan Liu style) */
+.section-heading {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+.section-heading .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    vertical-align: super;
+    margin-right: 8px;
+}
+
+/* Date stamp on cards */
+.card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+}
+.card .date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Mobile fix for experience row */
+@media (max-width: 700px) {
+    .experience-row { grid-template-columns: 1fr; gap: var(--space-3); }
+    .marquee-track { font-size: 20px; }
+}
+
+/* === Reset === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: var(--size-body);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* === Page container === */
+.page {
+    max-width: var(--width-page);
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-3) var(--space-7);
+}
+
+/* === Nav === */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-7);
+}
+nav .name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+}
+nav .links {
+    display: flex;
+    gap: var(--space-3);
+    font-size: 13px;
+}
+nav .links a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+nav .links a:hover { color: var(--accent); }
+
+/* === Hero (asymmetric, 960px) === */
+.hero {
+    max-width: var(--width-featured);
+    margin: 0 auto var(--space-7);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-5);
+    align-items: center;
+}
+
+.hero-left h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: var(--size-hero);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.hero-left h1 .accent-word {
+    color: var(--accent);
+    font-style: italic;
+}
+
+.hero-left .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-3);
+}
+
+.hero-left .intro {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 480px;
+}
+
+/* Hero right: animated terminal */
+.terminal {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.04);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+}
+.terminal-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rule);
+}
+.terminal-header .dot:nth-child(1) { background: var(--rule); }
+.terminal-header .dot:nth-child(2) { background: var(--rule); opacity: 0.8; }
+.terminal-header .dot:nth-child(3) { background: var(--rule); opacity: 0.6; }
+.terminal-header .title {
+    margin-left: 8px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.terminal-body {
+    padding: 16px 18px;
+    flex: 1;
+    color: var(--text-secondary);
+    overflow: hidden;
+}
+
+.terminal-body .prompt { color: var(--accent); font-weight: 500; }
+.terminal-body .comment { color: var(--text-tertiary); font-style: italic; }
+.terminal-body .metric { color: var(--accent); font-weight: 500; }
+.terminal-body .ok { color: var(--text-primary); font-weight: 500; }
+
+.terminal-body .line {
+    opacity: 0;
+    transform: translateY(4px);
+    animation: line-in 0.35s ease forwards;
+}
+.terminal-body .cursor {
+    display: inline-block;
+    width: 7px;
+    height: 14px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 0.9s steps(2, start) infinite;
+}
+@keyframes line-in {
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+    to { opacity: 0; }
+}
+
+/* Metric strip under hero */
+.metric-strip {
+    max-width: var(--width-featured);
+    margin: 0 auto var(--space-7);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.metric {
+    text-align: left;
+}
+.metric .number {
+    font-family: 'Source Serif 4', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+.metric .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* === Prose sections (640px) === */
+.prose {
+    max-width: var(--width-prose);
+    margin: 0 auto;
+    padding: var(--space-5) 0;
+}
+
+.rule {
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: var(--space-3);
+}
+
+.prose p {
+    font-size: var(--size-body);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+    line-height: 1.7;
+}
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--text-primary); font-weight: 600; }
+.prose .highlight {
+    color: var(--accent);
+    font-weight: 600;
+    background: var(--accent-tint);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* === Featured project (960px, with embed slot) === */
+.featured {
+    max-width: var(--width-featured);
+    margin: 0 auto;
+    padding: var(--space-6) 0;
+}
+
+.featured-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: var(--size-h2);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+.featured-tagline {
+    font-size: 17px;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: var(--space-4);
+}
+
+/* Architecture diagram placeholder (for fireworks output) */
+.arch-diagram {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+}
+.arch-diagram .arch-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-bottom: var(--space-2);
+    flex-wrap: wrap;
+}
+.arch-diagram .arch-step {
+    padding: 12px 18px;
+    border: 1.5px solid var(--accent);
+    background: var(--accent-tint);
+    color: var(--accent-strong);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.arch-diagram .arch-step:not(:last-child)::after {
+    content: "→";
+    margin-left: 18px;
+    color: var(--accent);
+}
+.arch-diagram .caption {
+    color: var(--text-tertiary);
+    font-size: 11px;
+}
+
+/* Live demo iframe embed */
+.demo-embed {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: var(--space-4) 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.04);
+}
+.demo-embed .demo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.demo-embed .demo-header .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 6px;
+    animation: live-pulse 1.6s ease-in-out infinite;
+}
+@keyframes live-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+.demo-embed .demo-img-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.demo-embed .demo-img-link:hover { transform: scale(1.01); }
+.demo-embed .demo-img-link img {
+    width: 100%;
+    display: block;
+    max-height: 600px;
+    object-fit: cover;
+    object-position: top;
+    background: #ffffff;
+}
+.demo-embed .demo-img-link::after {
+    content: "↗ Open live demo";
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.demo-embed .demo-img-link:hover::after { opacity: 1; }
+.demo-embed .demo-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.demo-embed .demo-cta:hover { background: var(--accent-strong); color: white; }
+
+/* === Other projects (card grid) === */
+.other-projects {
+    max-width: var(--width-featured);
+    margin: 0 auto;
+    padding: var(--space-6) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-3);
+}
+
+.card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Yan Liu-style image-first card */
+.card-img-wrap {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+}
+.card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.4s ease;
+}
+.card:hover .card-img-wrap img { transform: scale(1.03); }
+/* Quiet the text-heavy GitHub screenshot so it harmonizes with the other cards */
+.other-projects .card:nth-child(3) .card-img-wrap img {
+    filter: saturate(0.35) contrast(0.95);
+    opacity: 0.92;
+}
+.other-projects .card:nth-child(3):hover .card-img-wrap img {
+    filter: saturate(0.5) contrast(0.95);
+    opacity: 1;
+}
+
+.card-content {
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+.card .card-status {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-tint);
+    padding: 3px 8px;
+    border-radius: 3px;
+    align-self: flex-start;
+}
+.card h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+.card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+.card .tech {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 8px;
+}
+.card .tech span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    border: 1px solid var(--border);
+    padding: 3px 7px;
+    border-radius: 3px;
+}
+.card a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 4px;
+}
+.card a:hover { text-decoration: underline; }
+
+/* === Link styles (global) === */
+a.inline-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent-tint);
+    transition: border-color 0.15s;
+}
+a.inline-link:hover { border-color: var(--accent); }
+
+/* === Responsive === */
+@media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: var(--space-4); }
+    .metric-strip { grid-template-columns: repeat(2, 1fr); gap: var(--space-2); }
+    .other-projects { grid-template-columns: 1fr; }
+    .arch-diagram .arch-visual { flex-direction: column; }
+    .arch-diagram .arch-step:not(:last-child)::after { content: "↓"; margin-left: 0; display: block; margin-top: 8px; }
+}
+
+@media (max-width: 560px) {
+    :root { --size-hero: 40px; }
+}
+</style>
 </head>
-<body>
+<body data-accent="terracotta">
 
 <div class="page">
 
     <!-- NAV -->
     <nav>
-        <a class="name" href="#">Jiaying Li</a>
+        <a class="name" href="#">JL</a>
         <div class="links">
             <a href="#about">About</a>
-            <a href="#projects">Projects</a>
+            <a href="#work">Work</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>Search Relevance · Agent Builder · Product DS</h1>
-        <p class="intro">
-            Senior Data Scientist at Atlassian, focused on search relevance.
-            I've spent the last decade at Meta and Atlassian figuring out why search metrics move
-            and what to do about it. Recently I've been building agent systems
-            that automate the investigation work that used to take days.
-        </p>
+    <!-- GIANT WORDMARK -->
+    <div class="wordmark">JIAYING <span class="accent-letter">LI</span></div>
+
+    <!-- HERO (960px, asymmetric, animated terminal on right) -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="tagline">Senior DS · Atlassian · Mountain View · US Green Card</div>
+            <h1>Search relevance, <span class="accent-word">ranked</span> and <span class="accent-word">shipped</span>.</h1>
+            <p class="intro">I've spent a decade at Meta and Atlassian figuring out why search metrics move and what to do about it. Lately I build agent systems that automate the investigation work that used to take days.</p>
+        </div>
+        <div class="terminal" id="terminal">
+            <div class="terminal-header">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="title">sma · live demo</span>
+            </div>
+            <div class="terminal-body" id="terminalBody"></div>
+        </div>
+    </section>
+
+    <!-- METRIC STRIP -->
+    <section class="metric-strip">
+        <div class="metric">
+            <div class="number">2.5&times;</div>
+            <div class="label">Investigation throughput<br>(Atlassian SMA)</div>
+        </div>
+        <div class="metric">
+            <div class="number">+7M</div>
+            <div class="label">Daily sessions<br>(Meta Facebook Search)</div>
+        </div>
+        <div class="metric">
+            <div class="number">706</div>
+            <div class="label">Tests on SMA<br>(open source)</div>
+        </div>
+        <div class="metric">
+            <div class="number">$20M</div>
+            <div class="label">Recovery unlocked<br>(LLM outage prototype)</div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE STRIP -->
+    <section class="experience">
+        <div class="eyebrow">Selected experience</div>
+        <div class="experience-row">
+            <div class="exp-item">
+                <div class="logo-wrap"><img class="logo-img" src="https://cdn.simpleicons.org/ebay" alt="eBay"></div>
+                <div class="role">Senior Data Scientist · Paid Marketing</div>
+                <div class="years">2015 — 2019</div>
+            </div>
+            <div class="exp-item">
+                <div class="logo-wrap"><img class="logo-img" src="https://cdn.simpleicons.org/meta" alt="Meta"></div>
+                <div class="role">Senior Data Scientist · Search / Ads / Reliability</div>
+                <div class="years">2019 — 2025</div>
+            </div>
+            <div class="exp-item">
+                <div class="logo-wrap"><img class="logo-img" src="https://cdn.simpleicons.org/atlassian" alt="Atlassian"></div>
+                <div class="role">Senior Data Scientist · Search Relevance</div>
+                <div class="years">2025 — PRESENT</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE TICKER -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>Search Relevance</span><span class="dot">✦</span>
+            <span>Ranking</span><span class="dot">✦</span>
+            <span>Query Understanding</span><span class="dot">✦</span>
+            <span>Multi-Agent Systems</span><span class="dot">✦</span>
+            <span>A/B Testing</span><span class="dot">✦</span>
+            <span>Causal Inference</span><span class="dot">✦</span>
+            <span>LLM Evals</span><span class="dot">✦</span>
+            <span>Product DS</span><span class="dot">✦</span>
+            <!-- Duplicate for seamless loop -->
+            <span>Search Relevance</span><span class="dot">✦</span>
+            <span>Ranking</span><span class="dot">✦</span>
+            <span>Query Understanding</span><span class="dot">✦</span>
+            <span>Multi-Agent Systems</span><span class="dot">✦</span>
+            <span>A/B Testing</span><span class="dot">✦</span>
+            <span>Causal Inference</span><span class="dot">✦</span>
+            <span>LLM Evals</span><span class="dot">✦</span>
+            <span>Product DS</span><span class="dot">✦</span>
+        </div>
     </div>
 
     <!-- ABOUT -->
-    <div id="about" class="section">
-        <div class="rule"></div>
-        <div class="about">
-            <p>
-                I got into search because it sits at the intersection of everything I care about —
-                user behavior, ranking systems, and measurable outcomes. At Meta, I worked across
-                Facebook Search, Ads, and Reliability Infrastructure. The pattern I kept seeing:
-                smart people spending days on structured legwork that could be automated.
-            </p>
-            <p>
-                At Atlassian, I built their first Search Metric Analysis Agent to solve exactly that —
-                turning multi-day investigations into hours, with organic adoption across the org.
-                Then I rebuilt the concept independently as an open-source project with 706 tests
-                and a live demo, because I wanted to push the architecture further than a work project allows.
-            </p>
-            <p>
-                I think like a product manager but write code like an engineer. I care more about
-                whether a metric actually reflects user satisfaction than whether the model scores well on a benchmark.
-            </p>
+    <section class="prose" id="about">
+        <h2 class="section-heading"><span class="num">01</span>About</h2>
+        <p>I got into search because it sits at the intersection of everything I care about — <strong>user behavior, ranking systems, and measurable outcomes</strong>. At Meta, I worked across Facebook Search, Ads, and Reliability Infrastructure. The pattern I kept seeing: smart people spending days on structured legwork that could be automated.</p>
+        <p>At Atlassian, I built their first <span class="highlight">Search Metric Analysis Agent</span> to solve exactly that — turning multi-day investigations into hours, with organic adoption across the org. Then I rebuilt the concept independently as an open-source project with <strong>706 tests</strong> and a live demo, because I wanted to push the architecture further than a work project allows.</p>
+        <p>I think like a product manager but write code like an engineer. I care more about whether a metric actually reflects user satisfaction than whether the model scores well on a benchmark.</p>
+    </section>
+
+    <!-- FEATURED PROJECT -->
+    <section class="featured" id="work">
+        <h2 class="section-heading"><span class="num">02</span>Search Metric Analyzer</h2>
+        <p class="featured-tagline">A multi-agent system that automates the hardest parts of search metric investigation.</p>
+
+        <!-- SMA Architecture diagram (fireworks-tech-graph generated) -->
+        <figure class="arch-diagram" style="padding: 0; background: transparent; border: 1px solid var(--border); overflow: hidden; margin: var(--space-4) 0;">
+            <img src="assets/sma-architecture.svg" alt="SMA architecture — 4-stage pipeline (Understand, Hypothesize, Dispatch, Synthesize) fed by a 6-item Knowledge Layer with a Memory feedback loop" style="width: 100%; display: block;">
+            <figcaption style="padding: 10px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.12em; border-top: 1px solid var(--border); background: var(--bg);">14 quality gates (C1–C14) enforce contracts at every stage transition · 788 tests · 12 golden scenarios</figcaption>
+        </figure>
+
+        <!-- Inline live demo (screenshot + click-through — X-Frame-Options blocks iframe) -->
+        <div class="demo-embed">
+            <div class="demo-header">
+                <span><span class="live-dot"></span>Live · search-metric-analyzer-demo.vercel.app</span>
+                <a class="demo-cta" href="https://search-metric-analyzer-demo.vercel.app/" target="_blank">Open →</a>
+            </div>
+            <a class="demo-img-link" href="https://search-metric-analyzer-demo.vercel.app/" target="_blank" aria-label="Open live SMA demo in new tab">
+                <img src="assets/sma-demo-screenshot.jpg" alt="SMA live demo — QSR investigation showing co-movement decomposition, quality trend chart, and SQL query">
+            </a>
         </div>
+
+        <div class="prose" style="max-width: 640px; margin: 0; padding: 0;">
+            <p>When a search quality metric drops, finding the root cause is genuinely hard. It crosses multiple sub-systems, spans enterprise tenant segments, and requires recognizing co-movement patterns that separate real regressions from expected effects — like AI answer adoption lowering click-rate while improving quality.</p>
+            <p>SMA runs a four-stage pipeline — <strong>Understand</strong>, <strong>Hypothesize</strong>, <strong>Dispatch</strong>, <strong>Synthesize</strong> — with parallel sub-agents investigating each hypothesis against a routed knowledge base (playbooks, SEV archive, metric registry). The architecture is a deliberate hybrid: <strong>skill as interface, Python scripts as backbone</strong>. Prompts drive reasoning; code enforces the 14 quality gates (C1–C14) that make output reliable.</p>
+            <p>The newest iteration closes a <strong>Meta-SMA feedback loop</strong> on itself. Every investigation writes to a run registry. Retrospectives identify failure patterns. Auto-generated learnings inject back into the next run's context. The system gets sharper with use — 788 tests, 12 golden scenarios, regression gate in CI.</p>
+            <p>Python · DuckDB · PyYAML · skill-based orchestration. <a class="inline-link" href="https://github.com/surahli123/search-metric-analyzer" target="_blank">Open-source version →</a></p>
+        </div>
+    </section>
+
+    <!-- OTHER WORK SECTION HEADING -->
+    <div style="max-width: var(--width-featured); margin: 0 auto; padding-top: var(--space-6);">
+        <h2 class="section-heading"><span class="num">03</span>Other Work</h2>
     </div>
 
-    <!-- FEATURED PROJECT: Search Metric Analyzer -->
-    <div id="projects" class="section-spacious">
-        <div class="rule"></div>
-        <h2 class="project-title">Search Metric Analyzer</h2>
-        <p class="project-tagline">
-            A multi-agent system that automates the hardest parts of search metric investigation.
-        </p>
-
-        <div class="project-body">
-            <p>
-                When a search quality metric drops, finding the root cause is genuinely hard. It crosses
-                multiple sub-systems, requires decomposition across enterprise segments, and needs
-                recognition of co-movement patterns that distinguish real regressions from noise. An
-                experienced engineer can spend days on a single investigation.
-            </p>
-            <p>
-                This system automates the structured legwork through a four-stage pipeline, built with
-                706 tests across 13 synthetic scenarios, using only PyYAML and pytest as dependencies.
-            </p>
-
-            <h4>How it works</h4>
-            <ul>
-                <li><strong>Decompose</strong> — Kitagawa-Oaxaca decomposition isolates which segments drove the movement</li>
-                <li><strong>Detect</strong> — Step-change detection and co-movement pattern matching across metrics</li>
-                <li><strong>Diagnose</strong> — Pattern archetype recognition with confidence scoring</li>
-                <li><strong>Format</strong> — Structured report with hypothesis evaluation and next steps</li>
-            </ul>
-
-            <h4>Architecture</h4>
-        </div>
-
-        <div class="arch">
-            <div class="arch-step">Deterministic Toolkit</div>
-            <div class="arch-step">Orchestrator</div>
-            <div class="arch-step">Specialist Agents</div>
-            <div class="arch-step">Web UI</div>
-        </div>
-
-        <div class="project-links">
-            <a href="https://search-metric-analyzer-demo.vercel.app/">Live Demo</a>
-            <a href="https://search-metric-analyzer-demo.vercel.app/presentation">Concept Presentation</a>
-            <a href="https://github.com/surahli123/search-metric-analyzer">Source Code</a>
-        </div>
-    </div>
-
-    <!-- OTHER PROJECTS -->
-    <div class="section">
-        <div class="rule"></div>
-
-        <div class="other-project">
-            <h3>Water Bottle Finance Analyzer</h3>
-            <p>
-                Enterprise finance analysis tool for a Chinese company's CEO. Built primarily with
-                OpenAI Codex — bilingual (English/Chinese) Excel-based analysis with privacy guardrails.
-            </p>
-            <div class="tech">Python · FastAPI · Pydantic · OpenAI Codex · <a href="https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&view=dashboard&state=normal">Live Demo</a></div>
-        </div>
-
-        <div class="other-project">
-            <h3>DS Productivity Agents</h3>
-            <p>
-                Plugin system for data science workflows — specialized skills for DS review and
-                search domain knowledge, with a built-in eval framework.
-            </p>
-            <div class="tech">Python · Claude Code · Plugin Architecture · <a href="https://github.com/surahli123/ds-productivity-agents">GitHub</a></div>
-        </div>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="section-tight">
-        <div class="rule"></div>
-        <p class="skills-prose">
-            I work primarily in <strong>Python</strong> and <strong>SQL</strong>, with deep experience in
-            online metric measurement, search quality evaluation, query understanding,
-            A/B testing, causal inference, and incrementality testing. On the infrastructure side:
-            Spark, Hive, Airflow. More recently: LLMs, multi-agent system design, and building
-            with AI coding tools (Claude Code, OpenAI Codex).
-        </p>
-    </div>
+    <!-- OTHER PROJECTS (image-first card grid, Yan Liu style) -->
+    <section class="other-projects">
+        <a class="card" href="https://github.com/surahli123/autorefine-skill-improvement" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card-img-wrap">
+                <img src="assets/autorefine-screenshot.jpg" alt="AutoRefine dashboard showing Karpathy-style mutation optimization across score progression, experiments, and improvement staircase">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="card-status">Open source</span>
+                    <span class="date">2026.03 — Present</span>
+                </div>
+                <h3>AutoRefine</h3>
+                <p>Eval-grounded skill improvement loop combining Karpathy's autoresearch with Hamel's Three Gulfs. Turns prompt-tweaking into a disciplined research pipeline — error analysis, judge validation, mutation loop.</p>
+                <div class="tech">
+                    <span>Python</span><span>LLM evals</span><span>Claude Code</span>
+                </div>
+            </div>
+        </a>
+        <a class="card" href="https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&view=dashboard&state=normal" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card-img-wrap">
+                <img src="assets/water-bottle-screenshot.jpg" alt="Water Bottle Finance Analyzer — bilingual enterprise finance console with risk panel and anomaly alerts">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="card-status">Live</span>
+                    <span class="date">2025.11</span>
+                </div>
+                <h3>Water Bottle Finance Analyzer</h3>
+                <p>Enterprise finance analysis for a Chinese company's CEO. Built primarily with OpenAI Codex — bilingual (EN/中文), privacy guardrails, real users.</p>
+                <div class="tech">
+                    <span>Python</span><span>FastAPI</span><span>Codex</span>
+                </div>
+            </div>
+        </a>
+        <a class="card" href="https://github.com/surahli123/ds-productivity-agents" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card-img-wrap">
+                <img src="assets/ds-productivity-agents-screenshot.jpg" alt="DS Productivity Agents GitHub repo showing plugin architecture for data science workflows">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="card-status">Open source</span>
+                    <span class="date">2026.01</span>
+                </div>
+                <h3>DS Productivity Agents</h3>
+                <p>Plugin system for data science workflows — specialized skills for DS review and search domain knowledge, with a built-in eval framework.</p>
+                <div class="tech">
+                    <span>Python</span><span>Claude Code</span><span>Plugins</span>
+                </div>
+            </div>
+        </a>
+    </section>
 
     <!-- CONTACT -->
-    <div id="contact" class="section-tight">
-        <div class="rule"></div>
-        <div class="contact-links">
-            <a href="mailto:surah123@gmail.com">Email</a>
-            <a href="https://linkedin.com/in/surahli">LinkedIn</a>
-            <a href="https://github.com/surahli123">GitHub</a>
-        </div>
-    </div>
+    <section class="prose" id="contact">
+        <h2 class="section-heading"><span class="num">04</span>Contact</h2>
+        <p><strong>Let's talk.</strong> I'm looking for Senior DS roles at AI-first companies working on search, ranking, or agent systems. <strong>Based in Mountain View, CA · US Green Card holder</strong> — authorized to work, no visa sponsorship needed.</p>
+        <p>
+            <a class="inline-link" href="mailto:surah123@gmail.com">surah123@gmail.com</a> &nbsp;·&nbsp;
+            <a class="inline-link" href="https://linkedin.com/in/surahli">LinkedIn</a> &nbsp;·&nbsp;
+            <a class="inline-link" href="https://github.com/surahli123">GitHub</a>
+        </p>
+    </section>
 
-    <div class="colophon">Mountain View, CA</div>
+    <!-- COLOPHON -->
+    <div style="max-width: var(--width-prose); margin: var(--space-6) auto 0; padding-top: var(--space-3); border-top: 1px solid var(--border); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between;">
+        <span>Mountain View, CA</span>
+        <span>Built with vanilla HTML · Vibe-coded with Claude Code</span>
+    </div>
 
 </div>
 
-<script src="js/main.js"></script>
+<script>
+/* ============================================
+   Dark mode — respects user system preference
+   ============================================ */
+(function() {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const apply = e => document.body.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    apply(mq);
+    mq.addEventListener('change', apply);
+})();
+
+/* ============================================
+   Animated terminal — SMA investigation loop
+   ============================================ */
+const terminalBody = document.getElementById('terminalBody');
+
+const script = [
+    { text: '<span class="prompt">$</span> sma investigate "QSR drop on FPS wk 45"', delay: 0 },
+    { text: '<span class="comment"># understanding...</span>', delay: 700 },
+    { text: '  metric: search_quality_success · surface: FPS · window: 7d', delay: 1000 },
+    { text: '<span class="comment"># hypothesizing... (3 theories generated)</span>', delay: 1700 },
+    { text: '  ├─ <span class="metric">H1</span> ranking regression', delay: 2100 },
+    { text: '  ├─ <span class="metric">H2</span> AI answer adoption ↑ (inverse)', delay: 2400 },
+    { text: '  └─ <span class="metric">H3</span> instrumentation artifact', delay: 2700 },
+    { text: '<span class="comment"># dispatching sub-agents (parallel)...</span>', delay: 3200 },
+    { text: '  H1: REJECTED · H2: <span class="ok">SUPPORTED</span> · H3: REJECTED', delay: 4200 },
+    { text: '<span class="comment"># synthesizing...</span>', delay: 4800 },
+    { text: '<span class="ok">→ root cause: AI adoption inverse effect (92% confidence)</span>', delay: 5300 },
+    { text: '<span class="metric">→ 2.5× faster than manual investigation</span>', delay: 5800 },
+];
+
+function renderTerminal() {
+    terminalBody.innerHTML = '';
+    script.forEach((line, i) => {
+        setTimeout(() => {
+            const el = document.createElement('div');
+            el.className = 'line';
+            el.innerHTML = line.text;
+            terminalBody.appendChild(el);
+            // Add blinking cursor at the end only
+            if (i === script.length - 1) {
+                setTimeout(() => {
+                    const cursor = document.createElement('span');
+                    cursor.className = 'cursor';
+                    terminalBody.appendChild(cursor);
+                }, 400);
+            }
+        }, line.delay);
+    });
+    // Loop every 10s
+    setTimeout(renderTerminal, 10000);
+}
+renderTerminal();
+</script>
+
 </body>
 </html>

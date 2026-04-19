@@ -1,0 +1,93 @@
+# Jiaying Li
+
+Senior Data Scientist at Atlassian, targeting AI-first companies working on search, ranking, and agent systems.
+
+Based in Mountain View, CA. US Green Card holder (authorized to work without visa sponsorship).
+
+Contact: surah123@gmail.com · https://linkedin.com/in/surahli · https://github.com/surahli123
+
+## Positioning
+
+Senior Data Scientist who builds production-grade AI systems, not just analyses. 10+ years turning messy signals into structure across search relevance, ranking, and product analytics at Meta and Atlassian. Now building multi-agent systems that automate the hardest parts of metric investigation.
+
+## Three Core Themes
+
+1. **Deep search relevance expertise** — 6+ years at Meta (Facebook Search ranking, ML Infra, Content Search, People Search) and Atlassian (search relevance, search metric agent).
+2. **Product-minded DS who ships outcomes** — thinks like a PM about user outcomes, metrics, tradeoffs, experimentation design. Led 0-to-1 at Meta on LLM-based Severe Outage Prevention.
+3. **Builds real systems, not just notebooks** — side projects (SMA, AutoRefine, DS Productivity Agents) with 706+ tests, live demos, production-grade architecture.
+
+## Key Proof Points
+
+- **2.5x investigation throughput** — Atlassian Search Metric Analysis Agent (2 → 5 investigations per month), organic cross-org adoption
+- **+7M daily session gains** — Search Signal integration across 6+ FB product ML stacks at Meta (sustained over 4 halves)
+- **200K DAU + 1M daily sessions** — Content Search quality improvements
+- **300K new user DAU** — People Search ranking optimizations
+- **$30M infra cost savings** — Tech-led team of 3 DS at Meta
+- **$20M revenue recovery** — LLM-based Severe Outage Prevention prototype
+- **~10pp success rate correction** — Atlassian session-level metric revamp drove org-wide topline update
+- **706 tests** on open-source Search Metric Analyzer
+- **788 tests + 12 golden scenarios** on SMA v2 (skill + harness architecture)
+- **30% marketing efficiency improvement** + $5M+ budget reallocation — eBay incrementality testing
+- **40+ cross-org leads** coordinated for Search Signal integration
+- **50+ incrementality tests** designed and analyzed at eBay
+
+## Employment
+
+- **Atlassian** — Senior DS, Aug 2025–Present. Search Relevance.
+- **Meta** — Senior DS, Jan 2019–Apr 2025. Facebook Search, Ads, Reliability Infrastructure.
+- **eBay** — Senior DS, Nov 2015–Jan 2019. Paid Marketing (incrementality testing).
+
+## Education
+
+- Carnegie Mellon University — M.S. Statistics (2014–2015)
+- Fudan University — B.S. Statistics (2009–2014)
+
+## Languages
+
+Bilingual: English (Professional) + Chinese (Native)
+
+## Projects
+
+### Search Metric Analyzer (SMA)
+
+A multi-agent diagnostic system that automates the hardest parts of search metric investigation. Four-stage pipeline — Understand, Hypothesize, Dispatch, Synthesize — with parallel sub-agents investigating each hypothesis against a routed knowledge base (playbooks, SEV archive, metric registry, domain digests, corrections index, schema catalog). Architecture is a hybrid: skill as interface, Python scripts as backbone. Prompts drive reasoning; code enforces 14 quality gates (C1–C14).
+
+Live demo: https://search-metric-analyzer-demo.vercel.app/
+Source: https://github.com/surahli123/search-metric-analyzer
+Tech: Python, DuckDB, PyYAML
+
+### SMA v2 — Meta-SMA self-improvement loop
+
+Newer iteration that closes a feedback loop on itself. Every investigation writes to a run registry. Retrospectives identify failure patterns. Auto-generated learnings inject back into the next run's context. 788 tests, 12 golden scenarios, regression gate in CI.
+
+### AutoRefine
+
+Eval-grounded skill improvement loop combining Karpathy's autoresearch with Hamel's Three Gulfs. Turns prompt-tweaking into a disciplined research pipeline — error analysis, judge validation, mutation loop.
+
+Source: https://github.com/surahli123/autorefine-skill-improvement
+
+### Water Bottle Finance Analyzer
+
+Enterprise finance analysis for a Chinese company's CEO. Built primarily with OpenAI Codex. Bilingual (EN/中文), privacy guardrails, real users.
+
+Live demo: https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&view=dashboard&state=normal
+
+### DS Productivity Agents
+
+Plugin system for data science workflows — specialized skills for DS review and search domain knowledge, with a built-in eval framework.
+
+Source: https://github.com/surahli123/ds-productivity-agents
+
+## Technical Skills
+
+Primary: Python · SQL · online metric measurement · search quality evaluation · query understanding · A/B testing · causal inference · incrementality testing · ranking models · ML evaluation (NDCG, MRR, precision-recall)
+Infrastructure: Spark · Hive · Airflow · DuckDB
+Recent: LLMs · multi-agent system design · prompt engineering · LLM evals · Claude Code · OpenAI Codex · RAG · agentic workflows
+
+## What I'm looking for
+
+Senior Data Scientist roles at AI-first companies (OpenAI, Perplexity, Anthropic, and similar) working on:
+- Search / ranking / query understanding
+- Applied / product data science with LLMs
+- AI agent evaluation and improvement
+- Metric design and experimentation for AI products
