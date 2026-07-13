@@ -40,3 +40,22 @@ Live demo: https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?la
 A plugin system that packages repeatable data science review, domain guidance, and evaluation into testable workflows.
 
 Source: https://github.com/surahli123/ds-productivity-agents
+
+### Guwen Reactor
+
+An agent that adapts Classical Chinese texts into English with a deterministic faithfulness gate; built as a Kaggle vibe-coding capstone with a full evaluation suite.
+
+Source: https://github.com/surahli123/guwen-reactor
+
+### AI Writing Suite
+
+An open-source writing-assistant skill suite: polish AI-sounding prose, learn an author's voice, and draft against a pluggable knowledge base. Claude and Codex packaging.
+
+Source: https://github.com/surahli123/ai-writing-suite
+
+### DS Teaching Materials
+
+Two public courses on building data science workflows with AI agents.
+
+Subagents course: https://surahli123.github.io/ds-subagent-teaching/
+Skills course: https://surahli123.github.io/ds-skills-teaching/
