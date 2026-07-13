@@ -1,0 +1,11 @@
+The fonts in this directory are licensed under the SIL Open Font License,
+Version 1.1 (https://openfontlicense.org/):
+
+- Bricolage Grotesque — Copyright 2023 The Bricolage Grotesque Project Authors
+  (https://github.com/ateliertriay/bricolage)
+- Literata — Copyright 2020 The Literata Project Authors
+  (https://github.com/googlefonts/literata)
+- Spline Sans Mono — Copyright 2022 The Spline Sans Mono Project Authors
+  (https://github.com/SorkinType/SplineSansMono)
+
+Subset woff2 builds served via Google Fonts.

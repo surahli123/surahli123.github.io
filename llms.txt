@@ -13,6 +13,12 @@ Jiaying owns ambiguous data science problems end to end: defining the decision, 
 
 Search relevance is her deepest domain and a proving ground for metric design, experimentation, ranking analysis, query understanding, and customer-centered product decisions.
 
+## Track Record
+
+- Atlassian (Senior Data Scientist, Search Relevance, 2025–present): built Atlassian's first end-to-end Search Metric Analysis Agent (2.5x investigation throughput, organic cross-org adoption); revamped search quality metrics to session-level measurement, revealing a ~10pp higher true success rate.
+- Meta (2019–2025): delivered 200K DAU + 1M daily sessions by closing Content Search quality gaps; uncovered $20M in revenue-loss recovery with an LLM outage-prevention prototype; led 3 data scientists to $30M infra cost savings.
+- eBay (Senior Data Scientist, 2015–2019): boosted paid marketing spend efficiency 30% and reallocated $5M+ of budget through channel-level measurement.
+
 ## Public Work
 
 ### Search Metric Analyzer

@@ -6,10 +6,10 @@
     <title>Jiaying Li — Senior Data Scientist</title>
 
     <!-- SEO & Social -->
-    <meta name="description" content="Senior Data Scientist owning product questions through trusted measurement, self-serve analytics, modern dataflows, and evaluated AI systems.">
+    <meta name="description" content="Senior Data Scientist in Search & Ranking. I turn messy search behavior into ranked, trusted signal — and ship evaluated AI systems by directing agents.">
     <link rel="canonical" href="https://surahli123.github.io">
     <meta property="og:title" content="Jiaying Li — Senior Data Scientist">
-    <meta property="og:description" content="Senior Data Scientist owning product questions through trusted measurement, self-serve analytics, modern dataflows, and evaluated AI systems.">
+    <meta property="og:description" content="Senior Data Scientist in Search & Ranking. I turn messy search behavior into ranked, trusted signal — and ship evaluated AI systems by directing agents.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://surahli123.github.io">
     <meta property="og:site_name" content="Jiaying Li">
@@ -19,12 +19,12 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Jiaying Li, Senior Data Scientist — product, measurement, customer, and AI systems">
+    <meta property="og:image:alt" content="Jiaying Li, Senior Data Scientist — search relevance, measurement, and evaluated AI systems">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Jiaying Li — Senior Data Scientist">
-    <meta name="twitter:description" content="Senior Data Scientist owning product questions through trusted measurement, self-serve analytics, modern dataflows, and evaluated AI systems.">
+    <meta name="twitter:description" content="Senior Data Scientist in Search & Ranking. I turn messy search behavior into ranked, trusted signal — and ship evaluated AI systems by directing agents.">
     <meta name="twitter:image" content="https://surahli123.github.io/assets/portfolio-og.png">
-    <meta name="twitter:image:alt" content="Jiaying Li, Senior Data Scientist — product, measurement, customer, and AI systems">
+    <meta name="twitter:image:alt" content="Jiaying Li, Senior Data Scientist — search relevance, measurement, and evaluated AI systems">
 
     <script type="application/ld+json">
     {
@@ -40,9 +40,9 @@
                     "https://github.com/surahli123"
                 ],
                 "knowsAbout": [
+                    "Search relevance",
                     "Product analytics",
                     "Measurement systems",
-                    "Search relevance",
                     "AI system evaluation"
                 ]
             },
@@ -61,155 +61,166 @@
     }
     </script>
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2317212b'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='white'%3EJL%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23151322'/%3E%3Ccircle cx='20' cy='44' r='5' fill='%23e8b04b'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23e8b04b' opacity='0.75'/%3E%3Ccircle cx='46' cy='18' r='5' fill='%23e8b04b' opacity='0.5'/%3E%3C/svg%3E">
+    <link rel="preload" href="assets/fonts-v3/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts-v3/literata-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<div class="page">
+<header class="site-header">
+    <nav aria-label="Primary navigation">
+        <a class="name" href="#main-content">Jiaying Li</a>
+        <div class="links">
+            <a href="#record">Track record</a>
+            <a href="#selected-work">Selected work</a>
+            <a href="#lab">The lab</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+</header>
 
-    <header class="site-header">
-        <nav aria-label="Primary navigation">
-            <a class="name" href="#main-content">Jiaying Li</a>
-            <div class="links">
-                <a href="#proof">Expertise</a>
-                <a href="#selected-work">Selected work</a>
-                <a href="#contact">Contact</a>
+<main id="main-content">
+
+    <!-- ============ SIGNATURE: the ranking field ============ -->
+    <section id="intro" class="hero" aria-labelledby="page-title">
+        <div class="field-stage" aria-hidden="true">
+            <canvas id="ranking-field"></canvas>
+            <!-- CSS fallback composition: shown until WebGL takes over, or forever without it -->
+            <div class="field-fallback">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
             </div>
-        </nav>
-    </header>
+        </div>
 
-    <main id="main-content">
-        <section id="intro" class="hero" aria-labelledby="page-title">
-            <p class="eyebrow">Senior Data Scientist · Search &amp; Ranking · Product · Customer · AI</p>
-            <h1 id="page-title">Jiaying Li</h1>
+        <div class="hero-inner">
+            <p class="eyebrow">Senior Data Scientist · Search &amp; Ranking</p>
+            <h1 id="page-title">Noise in.<br>Signal, ranked, out.</h1>
             <p class="role-promise">
-                Senior Data Scientist turning ambiguous Search &amp; Ranking product and customer
-                questions into trusted measurement, self-serve systems, and evaluated AI products.
+                I'm Jiaying Li. I turn ambiguous Search &amp; Ranking questions into trusted
+                measurement, self-serve systems, and evaluated AI products.
             </p>
-            <p class="intro">
-                I build the signal, workflow, and decision layer around complex products. Search
-                relevance is my deepest domain: a proving ground for turning messy behavior into
-                metrics teams can trust and systems they can operate.
-            </p>
+
+            <form class="query-bar" autocomplete="off" aria-label="Rank the field">
+                <span class="query-prompt" aria-hidden="true">q&nbsp;=</span>
+                <input id="query-input" type="text" name="q"
+                       aria-label="Type a query to re-rank the document field"
+                       spellcheck="false" maxlength="60"
+                       placeholder="">
+                <button type="submit">Rank</button>
+            </form>
+            <p class="query-hint">Type anything — the field behind this page re-ranks for every query.</p>
+
             <div class="hero-actions" aria-label="Primary actions">
                 <a href="#selected-work">Explore selected work</a>
                 <a href="mailto:surah123@gmail.com">Start a conversation</a>
             </div>
-        </section>
+        </div>
 
-        <section id="proof" class="section" aria-labelledby="proof-title">
-            <div class="rule"></div>
-            <h2 id="proof-title">What I own</h2>
-            <p>
-                The strongest data science work connects five layers in a deliberate order: usable
-                evidence, trustworthy signals, product decisions, customer context, and system quality.
-            </p>
-            <ol class="proof-list" data-reveal>
-                <li class="proof-lead">
-                    <article>
-                        <h3>Self-serve analytics</h3>
-                        <p>Built concept-to-deployment diagnostic systems that turn metric movement into repeatable root-cause workflows and concrete next actions.</p>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h3>Measurement and dataflow modernization</h3>
-                        <p>Reframed fragmented event signals around end-to-end user journeys, revealing signal gaps that topline dashboards could not explain.</p>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h3>Product-scale decisions</h3>
-                        <p>Led metric design, experimentation, and causal analysis that helped cross-functional teams decide what to build, ship, or stop.</p>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h3>Product and customer questions</h3>
-                        <p>Connected product usage and customer questions to measurement plans, product prioritization, and rollout decisions.</p>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <h3>AI and LLM system evaluation</h3>
-                        <p>Designed evaluation loops that connect human judgment, failure modes, and business outcomes so prototypes can earn deployment confidence.</p>
-                    </article>
-                </li>
-            </ol>
-        </section>
+        <a class="scroll-cue" href="#proof" aria-label="Scroll to expertise">
+            <span aria-hidden="true">↓</span>
+        </a>
+    </section>
 
-        <section id="ownership" class="section" aria-labelledby="ownership-title">
-            <div class="rule"></div>
-            <h2 id="ownership-title">From question to operating system</h2>
-            <div class="about">
-                <p>
-                    I start with the decision a team needs to make, define the signal that would make
-                    that decision trustworthy, and trace the dataflow required to produce it. Then I
-                    build the analysis, evaluation, or internal tool, put it in users' hands, and learn
-                    from where the workflow breaks.
+    <!-- ============ paper world begins ============ -->
+    <section id="record" class="section" aria-labelledby="record-title">
+        <p class="kicker">evidence first</p>
+        <h2 id="record-title">Track record</h2>
+        <ul class="record-list">
+            <li class="record-row" data-reveal>
+                <p class="record-org">Atlassian <span class="record-meta">Senior Data Scientist · Search Relevance · 2025–now</span></p>
+                <p class="record-claim">
+                    Built Atlassian's first end-to-end Search Metric Analysis Agent —
+                    <strong>2.5&times; investigation throughput</strong> with organic cross-org adoption —
+                    and revamped search quality metrics to session level, revealing a
+                    <strong>~10pp higher true success rate</strong> masked by reformulation miscounting.
                 </p>
+            </li>
+            <li class="record-row" data-reveal>
+                <p class="record-org">Meta <span class="record-meta">Data Scientist → Senior · 2019–2025</span></p>
+                <p class="record-claim">
+                    Delivered <strong>200K DAU + 1M daily sessions</strong> by closing Content Search
+                    quality gaps; uncovered <strong>$20M</strong> in revenue-loss recovery with an
+                    LLM outage-prevention prototype; led 3 data scientists to
+                    <strong>$30M</strong> infra cost savings.
+                </p>
+            </li>
+            <li class="record-row" data-reveal>
+                <p class="record-org">eBay <span class="record-meta">Senior Data Scientist · 2015–2019</span></p>
+                <p class="record-claim">
+                    Boosted paid marketing spend efficiency <strong>30%</strong> and reallocated
+                    <strong>$5M+</strong> of budget through channel-level measurement.
+                </p>
+            </li>
+        </ul>
+    </section>
+
+    <section id="proof" class="section" aria-labelledby="proof-title">
+        <p class="kicker">what I own</p>
+        <h2 id="proof-title">What I own</h2>
+        <dl class="proof-list" data-reveal>
+            <div class="proof-item proof-lead">
+                <dt>Search relevance &amp; ranking measurement</dt>
+                <dd>My deepest domain: turning messy query and session behavior into metrics teams trust — from metric definition through experimentation to the diagnostic systems that explain movement.</dd>
+            </div>
+            <div class="proof-item">
+                <dt>Self-serve diagnostic systems</dt>
+                <dd>Concept-to-deployment tools that turn metric movement into repeatable root-cause workflows and concrete next actions.</dd>
+            </div>
+            <div class="proof-item">
+                <dt>AI and LLM system evaluation</dt>
+                <dd>Evaluation loops that connect human judgment, failure modes, and business outcomes so prototypes can earn deployment confidence.</dd>
+            </div>
+            <div class="proof-item">
+                <dt>Product-scale decisions</dt>
+                <dd>Metric design, experimentation, and causal analysis that help cross-functional teams decide what to build, ship, or stop.</dd>
+            </div>
+        </dl>
+        <p class="method-note">
+            The common thread: start from the decision a team needs to make, define the signal
+            that would make it trustworthy, build the system that produces it, and learn from
+            where the workflow breaks. The deliverable is not a notebook — it is a decision
+            capability other people can use.
+        </p>
+    </section>
+
+    <section id="selected-work" class="section-spacious" aria-labelledby="selected-work-title">
+        <p class="kicker">investigation №1</p>
+        <h2 id="selected-work-title">Search Metric Analyzer</h2>
+        <p class="section-lead project-tagline">
+            A public multi-agent system for turning search metric movement into structured diagnosis.
+        </p>
+
+        <article class="featured-project">
+            <div class="case-step" data-reveal>
+                <h3 class="case-label">Question</h3>
                 <p>
-                    That end-to-end loop is the common thread across product analytics, customer
-                    measurement, search relevance, and AI systems. The deliverable is not a notebook;
-                    it is a decision capability that other people can use.
+                    Search quality shifts rarely have one obvious cause. The evidence sits across
+                    segments, metrics, ranking behavior, and product context. How does an analyst move
+                    from "the metric moved" to a ranked set of hypotheses — without losing the evidence
+                    along the way?
                 </p>
             </div>
-        </section>
 
-        <section id="selected-work" class="section-spacious" aria-labelledby="selected-work-title">
-            <div class="rule"></div>
-            <h2 id="selected-work-title">Selected work</h2>
-
-            <article class="featured-project" aria-labelledby="sma-title">
-                <h3 id="sma-title" class="project-title">Search Metric Analyzer</h3>
-                <p class="project-tagline">
-                    A public multi-agent system for turning search metric movement into structured diagnosis.
+            <div class="case-step" data-reveal>
+                <h3 class="case-label">Approach</h3>
+                <p>
+                    I have built this system twice. The first version is Atlassian's in-house Search
+                    Metric Analysis Agent, which raised investigation throughput 2.5&times;. Search
+                    Metric Analyzer is the second: rebuilt independently, in the open, so the full
+                    system can be inspected — deterministic analysis where correctness matters,
+                    specialist agents where interpretation helps, and a product surface that keeps
+                    evidence attached to conclusions.
                 </p>
-
-                <div class="project-body">
-                    <p>
-                        Search quality shifts rarely have one obvious cause. The evidence sits across
-                        segments, metrics, ranking behavior, and product context. Search Metric Analyzer
-                        organizes that investigation into an inspectable workflow so an analyst can move
-                        from change detection to a ranked set of hypotheses and next steps.
-                    </p>
-                    <p>
-                        I built the project independently to make the full system visible: deterministic
-                        analysis where correctness matters, specialist agents where interpretation helps,
-                        and a product surface that keeps evidence attached to conclusions.
-                    </p>
-
-                    <figure class="project-media project-media-overview" data-reveal>
-                        <a href="https://search-metric-analyzer-demo.vercel.app/">
-                            <img
-                                src="assets/sma-overview.png"
-                                width="1440"
-                                height="1000"
-                                loading="lazy"
-                                alt="Search Metric Analyzer overview showing a within-variance result, evaluated hypotheses, and supporting metric evidence"
-                            >
-                        </a>
-                        <figcaption>
-                            The public product overview keeps the result, hypothesis evaluation, and
-                            supporting evidence together. <a href="https://search-metric-analyzer-demo.vercel.app/">Open the live demo</a>.
-                        </figcaption>
-                    </figure>
-
-                    <h4>How it works</h4>
-                    <ol>
-                        <li><strong>Decompose</strong> — isolate which segments drove the movement.</li>
-                        <li><strong>Detect</strong> — compare step changes and co-movement across metrics.</li>
-                        <li><strong>Diagnose</strong> — evaluate competing patterns with explicit confidence.</li>
-                        <li><strong>Report</strong> — produce a structured investigation with next actions.</li>
-                    </ol>
-
-                    <h4>System shape</h4>
-                </div>
-
-                <figure class="project-media project-media-workflow" data-reveal>
+                <ol class="case-stages">
+                    <li><strong>Decompose</strong> — isolate which segments drove the movement.</li>
+                    <li><strong>Detect</strong> — compare step changes and co-movement across metrics.</li>
+                    <li><strong>Diagnose</strong> — evaluate competing patterns with explicit confidence.</li>
+                    <li><strong>Report</strong> — produce a structured investigation with next actions.</li>
+                </ol>
+                <figure class="project-media" data-reveal>
                     <img
                         src="assets/sma-workflow.svg"
                         width="1200"
@@ -217,14 +228,27 @@
                         loading="lazy"
                         alt="Search Metric Analyzer workflow from metric decomposition through pattern detection, diagnosis, and an evidence-linked report"
                     >
+                </figure>
+            </div>
+
+            <div class="case-step" data-reveal>
+                <h3 class="case-label">Evidence</h3>
+                <figure class="project-media">
+                    <a href="https://search-metric-analyzer-demo.vercel.app/">
+                        <img
+                            src="assets/sma-overview.png"
+                            width="1440"
+                            height="1000"
+                            loading="lazy"
+                            alt="Search Metric Analyzer overview showing a within-variance result, evaluated hypotheses, and supporting metric evidence"
+                        >
+                    </a>
                     <figcaption>
-                        The workflow moves from <strong>Decompose</strong> to <strong>Detect</strong>,
-                        <strong>Diagnose</strong>, and <strong>Report</strong>; the same four stages are
-                        described in the ordered list above.
+                        The public overview keeps the result, hypothesis evaluation, and supporting
+                        evidence together.
                     </figcaption>
                 </figure>
-
-                <figure class="project-media project-media-report" data-reveal>
+                <figure class="project-media">
                     <a href="https://search-metric-analyzer-demo.vercel.app/">
                         <img
                             src="assets/sma-report.png"
@@ -235,64 +259,78 @@
                         >
                     </a>
                     <figcaption>
-                        The public report connects the conclusion to component movement and trend evidence.
-                        <a href="https://search-metric-analyzer-demo.vercel.app/">Inspect the current product surface</a>.
+                        The report connects the conclusion to component movement and trend evidence.
                     </figcaption>
                 </figure>
-
-                <div class="project-links" aria-label="Search Metric Analyzer links">
-                    <a href="https://search-metric-analyzer-demo.vercel.app/">Live Demo</a>
-                    <a href="https://search-metric-analyzer-demo.vercel.app/presentation">Presentation</a>
-                    <a href="https://github.com/surahli123/search-metric-analyzer">Source</a>
-                </div>
-            </article>
-        </section>
-
-        <section id="supporting-work" class="section" aria-labelledby="supporting-work-title">
-            <div class="rule"></div>
-            <h2 id="supporting-work-title">Supporting work</h2>
-
-            <article class="other-project">
-                <h3>Finance Analysis Workspace</h3>
-                <p>
-                    A bilingual, privacy-conscious finance workflow that turns spreadsheet inputs into
-                    structured analysis and an executive review surface. Built as an end-to-end product,
-                    not a one-off analysis.
-                </p>
-                <p class="tech">Python · FastAPI · Pydantic · OpenAI Codex · <a href="https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&amp;view=dashboard&amp;state=normal">Live Demo</a></p>
-            </article>
-
-            <article class="other-project">
-                <h3>DS Productivity Agents</h3>
-                <p>
-                    A plugin system for repeatable data science review, domain guidance, and evaluation.
-                    It packages analytical judgment into workflows that can be tested and improved.
-                </p>
-                <p class="tech">Python · Agent workflows · Evaluation · <a href="https://github.com/surahli123/ds-productivity-agents">GitHub</a></p>
-            </article>
-        </section>
-
-        <section id="contact" class="section-tight" aria-labelledby="contact-title">
-            <div class="rule"></div>
-            <h2 id="contact-title">Let's compare notes</h2>
-            <p>
-                I am interested in Search &amp; Ranking product roles where customer questions,
-                measurement, dataflow quality, and AI system evaluation belong to one end-to-end owner.
-            </p>
-            <div class="contact-links">
-                <a href="mailto:surah123@gmail.com">Email</a>
-                <a href="https://linkedin.com/in/surahli">LinkedIn</a>
-                <a href="https://github.com/surahli123">GitHub</a>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p class="colophon">Built around public work and verifiable evidence.</p>
-    </footer>
+            <div class="project-links" aria-label="Search Metric Analyzer links">
+                <a href="https://search-metric-analyzer-demo.vercel.app/">Live demo</a>
+                <a href="https://search-metric-analyzer-demo.vercel.app/presentation">Presentation</a>
+                <a href="https://github.com/surahli123/search-metric-analyzer">Source</a>
+            </div>
+        </article>
+    </section>
 
-</div>
+    <section id="lab" class="section" aria-labelledby="lab-title">
+        <p class="kicker">side work, ranked</p>
+        <h2 id="lab-title">The lab</h2>
+        <p class="section-lead">
+            Side projects I build by directing AI agents — each one shipped far enough
+            to be used, not just demoed. Ranked by how much I'd defend them in review.
+        </p>
 
-<script src="js/main.js"></script>
+        <ol class="lab-list">
+            <li class="lab-entry" data-reveal>
+                <p class="lab-rank" aria-hidden="true">01 <span class="rel">rel 0.97</span></p>
+                <div class="lab-body">
+                    <h3>Finance Analysis Workspace</h3>
+                    <p>
+                        A bilingual, privacy-conscious finance workflow that turns spreadsheet inputs
+                        into structured analysis and an executive review surface. Built as an
+                        end-to-end product, not a one-off analysis.
+                    </p>
+                    <p class="tech">Python · FastAPI · Pydantic · <a href="https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&amp;view=dashboard&amp;state=normal">Live demo</a></p>
+                </div>
+            </li>
+            <li class="lab-entry" data-reveal>
+                <p class="lab-rank" aria-hidden="true">02 <span class="rel">rel 0.91</span></p>
+                <div class="lab-body">
+                    <h3>DS Productivity Agents</h3>
+                    <p>
+                        A plugin system for repeatable data science review, domain guidance, and
+                        evaluation. It packages analytical judgment into workflows that can be
+                        tested and improved.
+                    </p>
+                    <p class="tech">Python · Agent workflows · Evaluation · <a href="https://github.com/surahli123/ds-productivity-agents">Source</a></p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <section id="contact" class="section-tight" aria-labelledby="contact-title">
+        <p class="kicker">query me</p>
+        <h2 id="contact-title">Let's compare notes</h2>
+        <p class="section-lead">
+            I am interested in Search &amp; Ranking product roles where customer questions,
+            measurement, dataflow quality, and AI system evaluation belong to one end-to-end owner.
+        </p>
+        <div class="contact-links">
+            <a href="mailto:surah123@gmail.com">Email</a>
+            <a href="https://linkedin.com/in/surahli">LinkedIn</a>
+            <a href="https://github.com/surahli123">GitHub</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p class="colophon">
+        Built around public work and verifiable evidence. This site itself is
+        AI-directed development: designed and shipped by directing coding agents,
+        reviewed by hand. <a href="https://github.com/surahli123/surahli123.github.io">Source</a>.
+    </p>
+</footer>
+
+<script src="js/main.js" type="module"></script>
 </body>
 </html>
