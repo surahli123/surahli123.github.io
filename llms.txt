@@ -53,9 +53,3 @@ An open-source writing-assistant skill suite: polish AI-sounding prose, learn an
 
 Source: https://github.com/surahli123/ai-writing-suite
 
-### DS Teaching Materials
-
-Two public courses on building data science workflows with AI agents.
-
-Subagents course: https://surahli123.github.io/ds-subagent-teaching/
-Skills course: https://surahli123.github.io/ds-skills-teaching/
