@@ -1,288 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jiaying Li — Senior Data Scientist</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiaying Li — search relevance, agents, evals</title>
+<style>
+@font-face{font-family:"Bodoni Moda";src:url("assets/fonts/bodoni-moda-600.woff2") format("woff2");font-weight:500 700;font-display:swap;}
+@font-face{font-family:"Noto Serif SC";src:url("assets/fonts/noto-serif-sc-600-subset.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Hanken Grotesk";src:url("assets/fonts/hanken-grotesk-400.woff2") format("woff2");font-weight:400;font-display:swap;}
+@font-face{font-family:"Hanken Grotesk";src:url("assets/fonts/hanken-grotesk-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Spline Sans Mono";src:url("assets/fonts/spline-sans-mono-400.woff2") format("woff2");font-weight:400 500;font-display:swap;}
+:root{
+  --paper:#F4EFE6;
+  --ink:#1A1714;
+  --ink-soft:#3a342d;
+  --accent:#C0392B;
+  --line:#C9C0B2;
+  --muted:#7d756a;
+  --serif:"Bodoni Moda","Didot","Bodoni 72",'Songti SC',serif;
+  --serif-cjk:"Noto Serif SC",'Songti SC',serif;
+  --sans:"Hanken Grotesk","Avenir Next",'PingFang SC',sans-serif;
+  --mono:"Spline Sans Mono",Menlo,monospace;
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+html,body{background:var(--paper);}
+body{
+  margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(rgba(26,23,20,.025) 1px,transparent 1px);
+  background-size:3px 3px;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* .page must NOT create a stacking context — the shanshui layers' mix-blend-mode:darken
+   needs to reach the body's paper + dot-grid backdrop to composite seamlessly */
+.page{position:relative;max-width:1320px;margin:0 auto;padding:0 clamp(28px,4.5vw,64px);}
+nav{
+  display:flex;justify-content:space-between;align-items:center;min-height:76px;
+  border-bottom:1px solid var(--line);
+  font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+}
+nav .brand{font-family:var(--serif);font-size:24px;letter-spacing:0;text-transform:none;font-weight:600;}
+nav .links a{color:var(--ink-soft);text-decoration:none;margin-left:26px;}
+nav .links a:hover{color:var(--accent);}
+nav .count{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:32px;white-space:nowrap;}
+nav .count i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-left:6px;animation:pulse 2.4s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 
-    <!-- SEO & Social -->
-    <meta name="description" content="Senior Data Scientist in Search & Ranking. I turn messy search behavior into ranked, trusted signal — and ship evaluated AI systems by directing agents.">
-    <link rel="canonical" href="https://surahli123.github.io">
-    <meta property="og:title" content="Jiaying Li — Senior Data Scientist">
-    <meta property="og:description" content="Senior Data Scientist in Search & Ranking. I turn messy search behavior into ranked, trusted signal — and ship evaluated AI systems by directing agents.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://surahli123.github.io">
-    <meta property="og:site_name" content="Jiaying Li">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://surahli123.github.io/assets/portfolio-og.png">
-    <meta property="og:image:secure_url" content="https://surahli123.github.io/assets/portfolio-og.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Jiaying Li, Senior Data Scientist — search relevance, measurement, and evaluated AI systems">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jiaying Li — Senior Data Scientist">
-    <meta name="twitter:description" content="Senior Data Scientist in Search & Ranking. I turn messy search behavior into ranked, trusted signal — and ship evaluated AI systems by directing agents.">
-    <meta name="twitter:image" content="https://surahli123.github.io/assets/portfolio-og.png">
-    <meta name="twitter:image:alt" content="Jiaying Li, Senior Data Scientist — search relevance, measurement, and evaluated AI systems">
+/* ---------- hero: layered ink-wash shanshui (full-bleed — the mountain owns the viewport) ---------- */
+.hero{
+  position:relative;left:50%;width:100vw;margin-left:-50vw;
+  min-height:max(82vh,680px);display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;isolation:isolate;background:var(--paper);
+}
+/* layers bleed past the hero so parallax travel never exposes a gap */
+.shanshui{position:absolute;inset:-24px -12px -72px;z-index:0;pointer-events:none;}
+.shanshui .layer{
+  position:absolute;right:0;bottom:0;width:100%;height:100%;
+  object-fit:cover;object-position:right bottom;
+  mix-blend-mode:darken;               /* paper-on-paper vanishes, ink always wins */
+  will-change:transform;
+  opacity:0;
+}
+.shanshui .far {animation:layerin 1200ms var(--ease-out) 100ms forwards;}
+.shanshui .mid {animation:layerin 1100ms var(--ease-out) 350ms forwards;}
+.shanshui .fore{animation:layerin 1000ms var(--ease-out) 600ms forwards;}
+@keyframes layerin{
+  from{opacity:0;transform:translate3d(0,18px,0);}
+  to  {opacity:1;transform:translate3d(0,0,0);}
+}
+/* drifting mist between the ridge layers */
+.mist{
+  position:absolute;pointer-events:none;height:38%;width:70%;
+  background:radial-gradient(ellipse at center,rgba(244,239,230,.95) 0%,rgba(244,239,230,0) 68%);
+  filter:blur(2px);opacity:0;
+}
+.mist.m1{left:-10%;bottom:26%;animation:drift1 75s linear infinite,mistin 2s var(--ease-out) 900ms forwards;}
+.mist.m2{right:-20%;bottom:8%;height:30%;animation:drift2 95s linear infinite,mistin 2s var(--ease-out) 1300ms forwards;}
+@keyframes mistin{to{opacity:.8}}
+@keyframes drift1{0%{transform:translateX(0)}50%{transform:translateX(9vw)}100%{transform:translateX(0)}}
+@keyframes drift2{0%{transform:translateX(0)}50%{transform:translateX(-11vw)}100%{transform:translateX(0)}}
+/* text-protection mist: a soft ellipse hugging the text block, not a hard wall */
+.hero-inner::before{
+  content:"";position:absolute;z-index:-1;inset:-7% -10% -7% -4%;pointer-events:none;
+  background:radial-gradient(ellipse at 35% 50%,rgba(244,239,230,.94) 0%,rgba(244,239,230,.78) 50%,rgba(244,239,230,0) 76%);
+}
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Person",
-                "name": "Jiaying Li",
-                "jobTitle": "Senior Data Scientist",
-                "url": "https://surahli123.github.io",
-                "sameAs": [
-                    "https://linkedin.com/in/surahli",
-                    "https://github.com/surahli123"
-                ],
-                "knowsAbout": [
-                    "Search relevance",
-                    "Product analytics",
-                    "Measurement systems",
-                    "AI system evaluation"
-                ]
-            },
-            {
-                "@type": "SoftwareApplication",
-                "name": "Search Metric Analyzer",
-                "applicationCategory": "Data analysis software",
-                "url": "https://search-metric-analyzer-demo.vercel.app/",
-                "codeRepository": "https://github.com/surahli123/search-metric-analyzer",
-                "author": {
-                    "@type": "Person",
-                    "name": "Jiaying Li"
-                }
-            }
-        ]
-    }
-    </script>
+.hero-inner{
+  position:relative;z-index:2;width:min(760px,49vw);pointer-events:none;
+  margin-left:max(clamp(28px,4.5vw,64px),calc((100vw - 1320px)/2 + 64px));  /* full-bleed hero: realign text to the content column */
+}
+.hero-inner a{pointer-events:auto;}
+.hero h1{
+  margin:0;font-family:var(--serif);font-weight:600;
+  font-size:clamp(96px,13vw,196px);line-height:.94;letter-spacing:-.01em;
+}
+.hero h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em;}
+.hero h1 .word span{display:inline-block;transform:translateY(110%);animation:rise 900ms var(--ease-out) forwards;}
+@keyframes rise{to{transform:translateY(0)}}
+.zh-kicker{
+  display:flex;align-items:center;gap:12px;margin:18px 0 20px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;color:var(--accent);
+  opacity:0;animation:fadein 700ms var(--ease-out) 500ms forwards;
+}
+@keyframes fadein{to{opacity:1}}
+.zh-kicker::after{content:"";flex:0 0 56px;height:1px;background:var(--accent);}
+.zh-kicker .zh{font-family:var(--serif-cjk);font-size:16px;letter-spacing:.3em;}
+.promise{
+  max-width:36ch;font-size:19px;line-height:1.85;color:var(--ink-soft);margin:0;
+  opacity:0;animation:fadein 700ms var(--ease-out) 700ms forwards;
+}
+.promise b{color:var(--ink);font-weight:600;}
+.cta{margin-top:34px;display:flex;gap:14px;opacity:0;animation:fadein 700ms var(--ease-out) 950ms forwards;}
+.cta a{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;font-size:14px;letter-spacing:.08em;text-decoration:none;transition:transform 200ms var(--ease-out);}
+.cta a:hover{transform:translateY(-2px);}
+.cta a.primary{background:var(--accent);color:var(--paper);}
+.cta a.ghost{border:1px solid var(--ink);color:var(--ink);}
+/* the seal stamps itself onto the hero */
+.hero .seal{
+  position:absolute;z-index:2;right:max(clamp(24px,6vw,90px),calc((100vw - 1320px)/2 + 64px));bottom:64px;
+  width:64px;height:64px;background:var(--accent);color:var(--paper);
+  writing-mode:vertical-rl;display:grid;place-items:center;
+  font-family:var(--serif-cjk);font-size:23px;border-radius:4px;
+  transform:scale(2.2) rotate(-14deg);opacity:0;
+  animation:stamp 500ms cubic-bezier(.34,1.2,.64,1) 1400ms forwards;
+  box-shadow:0 0 0 0 rgba(192,57,43,.25);
+}
+@keyframes stamp{
+  60%{transform:scale(.96) rotate(-4deg);opacity:1;}
+  100%{transform:scale(1) rotate(-6deg);opacity:1;box-shadow:0 2px 14px -6px rgba(192,57,43,.5);}
+}
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23151322'/%3E%3Ccircle cx='20' cy='44' r='5' fill='%23e8b04b'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23e8b04b' opacity='0.75'/%3E%3Ccircle cx='46' cy='18' r='5' fill='%23e8b04b' opacity='0.5'/%3E%3C/svg%3E">
-    <link rel="preload" href="assets/fonts-v3/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts-v3/literata-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/style.css">
+/* ---------- spec strip ---------- */
+.spec-strip{padding:8px 0 64px;}
+.spec{
+  position:relative;border:1px solid var(--line);background:rgba(255,255,255,.35);
+  padding:30px 28px 24px;font-family:var(--mono);
+}
+.spec::before,.spec::after,.spec .ca::before,.spec .cb::before{content:"+";position:absolute;color:var(--accent);font-size:15px;font-family:var(--mono);}
+.spec::before{top:-9px;left:-7px;}.spec::after{bottom:-10px;right:-7px;}
+.spec .ca::before{top:-9px;right:-7px;}.spec .cb::before{bottom:-10px;left:-7px;}
+.spec .title{font-size:11px;letter-spacing:.22em;color:var(--accent);margin:0 0 16px;}
+.spec dl{margin:0;display:grid;grid-template-columns:repeat(3,110px 1fr);column-gap:22px;row-gap:9px;font-size:12.5px;}
+.spec dt{color:var(--muted);}
+.spec dd{margin:0;color:var(--ink-soft);}
+.spec dd a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid rgba(192,57,43,.45);}
+.spec dd a:hover{color:var(--accent);}
+
+/* ---------- sections ---------- */
+section{padding:76px 0 0;}
+.kicker{
+  display:flex;align-items:center;gap:14px;margin:0 0 8px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;
+}
+.kicker .zh{font-family:var(--serif-cjk);font-size:17px;}
+.kicker::after{content:"";flex:0 0 44px;height:1px;background:var(--accent);}
+h2.giant{
+  margin:0 0 14px;font-family:var(--serif);font-weight:600;
+  font-size:clamp(60px,7.5vw,110px);line-height:1;
+  will-change:transform;
+}
+.lede{max-width:60ch;color:var(--muted);margin:0 0 40px;font-size:16.5px;}
+
+.ledger,.station{border-top:1px solid var(--ink);}
+.row{
+  display:grid;grid-template-columns:110px minmax(0,3fr) minmax(0,4fr) 120px;
+  gap:28px;align-items:baseline;padding:26px 4px;border-bottom:1px solid var(--line);
+}
+.row .no{font-family:var(--serif);font-size:52px;color:var(--line);line-height:1;}
+.row .org{font-weight:600;font-size:19px;}
+.row .org small{display:block;font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted);letter-spacing:.08em;margin-top:4px;}
+.row .what{font-size:14.5px;color:var(--ink-soft);}
+.row .what b{font-family:var(--mono);font-weight:600;color:var(--accent);font-size:13.5px;}
+.row .yr{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;}
+
+.st-row{
+  display:grid;grid-template-columns:200px minmax(0,4fr) minmax(0,5fr) 110px;
+  gap:26px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line);
+}
+.thumb-wrap{width:200px;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line);background:#fff;}
+.thumb{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 500ms var(--ease-out);}
+.st-row:hover .thumb{transform:scale(1.06);}
+.thumb-none{width:200px;aspect-ratio:16/10;border:1px dashed var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.1em;}
+.p-name{font-weight:600;font-size:17px;}
+.p-name small{display:block;font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted);margin-top:3px;}
+.tests{font-family:var(--mono);font-size:11.5px;color:var(--muted);display:block;margin-top:6px;}
+.p-desc{font-size:13.5px;color:var(--ink-soft);}
+.p-links{display:block;margin-top:8px;font-family:var(--mono);font-size:11.5px;}
+.p-links a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(192,57,43,.35);margin-right:14px;}
+.p-links a:hover{border-bottom-color:var(--accent);}
+.status{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-align:right;white-space:nowrap;}
+.status i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;background:var(--accent);}
+.status.soon{color:var(--muted);}.status.soon i{background:var(--line);}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 650ms var(--ease-out),transform 650ms var(--ease-out);}
+.reveal.in{opacity:1;transform:none;}
+
+/* contact + marquee */
+.contact{text-align:center;padding:96px 0 40px;}
+.contact .small{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--muted);}
+.contact h2{font-family:var(--serif);font-weight:500;font-size:clamp(56px,7vw,96px);margin:14px 0 6px;line-height:1.05;}
+.stroke{position:relative;display:inline-block;}
+.stroke::after{
+  content:"";position:absolute;left:-2%;right:-2%;bottom:6px;height:7px;background:var(--accent);opacity:.85;
+  border-radius:50% 40% 50% 40%/70% 60% 70% 60%;transform:rotate(-.6deg) scaleX(0);transform-origin:left;
+  transition:transform 700ms var(--ease-out) 200ms;
+}
+.contact.in .stroke::after{transform:rotate(-.6deg) scaleX(1);}
+.contact p{color:var(--ink-soft);margin:16px 0 0;}
+.marquee{
+  margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:13px 0;font-family:var(--mono);font-size:13px;color:var(--muted);
+  white-space:nowrap;overflow:hidden;letter-spacing:.12em;
+}
+.marquee .track{display:inline-block;animation:slide 28s linear infinite;}
+@keyframes slide{to{transform:translateX(-50%)}}
+footer{display:flex;justify-content:space-between;gap:20px;padding:22px 0 40px;font-family:var(--mono);font-size:11.5px;color:var(--muted);}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0ms !important;transition-duration:.01ms !important;}
+  .hero h1 .word span{transform:none;}
+  .zh-kicker,.promise,.cta,.hero .seal{opacity:1;}
+  .shanshui .layer{opacity:1;transform:none;}
+  .mist{opacity:.8;}
+  .marquee .track{animation:none;}
+  .reveal{opacity:1;transform:none;}
+}
+@media (max-width:760px){
+  .page{padding:0 20px;}
+  .row,.st-row{grid-template-columns:1fr;}
+  .thumb-wrap,.thumb-none{width:100%;}
+  .spec dl{grid-template-columns:96px 1fr;}
+  .hero .seal{display:none;}
+  nav{min-height:66px;align-items:flex-start;padding:14px 0;gap:12px;}
+  nav .brand{white-space:nowrap;}
+  nav .links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px 12px;}
+  nav .links a{margin:0;font-size:9px;}
+  nav .count{display:none;}
+  .zh-kicker .zh{white-space:nowrap;}
+  .hero{min-height:780px;justify-content:flex-start;}
+  .hero-inner{width:auto;margin:0;padding:72px 20px 280px;}
+  .hero-inner::before{inset:-8% -5%;background:linear-gradient(180deg,var(--paper) 0%,rgba(244,239,230,.97) 57%,rgba(244,239,230,0) 88%);}
+  .hero h1{font-size:clamp(76px,25vw,128px);}
+  .shanshui{inset:auto -34% -25px -24%;height:58%;}
+  .shanshui .layer{object-position:72% bottom;}   /* keep the hiker in frame on the tight crop */
+  .mist{display:none;}
+}
+</style>
 </head>
 <body>
-
-<a class="skip-link" href="#main-content">Skip to main content</a>
-
-<header class="site-header">
-    <nav aria-label="Primary navigation">
-        <a class="name" href="#main-content">Jiaying Li</a>
-        <div class="links">
-            <a href="#record">Track record</a>
-            <a href="#lab">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
+<div class="page">
+    <nav>
+        <span class="brand">Jiaying Li</span>
+        <span class="links"><a href="#record">Record · 迹</a><a href="#build">Build · 造</a><a href="#teach">Teach · 教</a><a href="#notes">Notes · 写</a><a href="plants.html">Garden · 植</a><a href="#contact">Contact · 联</a></span>
+        <span class="count"><a href="https://github.com/surahli123" style="color:inherit;text-decoration:none;">github ↗</a> · evals 436<i></i></span>
     </nav>
-</header>
 
-<main id="main-content">
-
-    <!-- ============ SIGNATURE: the ranking field ============ -->
-    <section id="intro" class="hero" aria-labelledby="page-title">
-        <div class="field-stage" aria-hidden="true">
-            <canvas id="ranking-field"></canvas>
-            <!-- CSS fallback composition: shown until WebGL takes over, or forever without it -->
-            <div class="field-fallback">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-            </div>
+    <div class="hero">
+        <div class="shanshui" aria-hidden="true">
+            <img class="layer far"  src="assets/ink/shanshui-far.webp"  alt="" data-depth="0.42" data-px="6">
+            <div class="mist m1"></div>
+            <img class="layer mid"  src="assets/ink/shanshui-mid.webp"  alt="" data-depth="0.26" data-px="4">
+            <div class="mist m2"></div>
+            <img class="layer fore" src="assets/ink/shanshui-fore.webp" alt="" data-depth="0.12" data-px="2">
         </div>
-
         <div class="hero-inner">
-            <p class="eyebrow">Senior Data Scientist · Search &amp; Ranking</p>
-            <h1 id="page-title">Noise in.<br>Signal, ranked, out.</h1>
-            <p class="role-promise">
-                I'm Jiaying Li. I turn ambiguous Search &amp; Ranking questions into trusted
-                measurement, self-serve systems, and evaluated AI products.
+            <h1><span class="word"><span style="animation-delay:80ms">Jiaying</span></span></h1>
+            <p class="zh-kicker"><span class="zh">李嘉颖</span> SEARCH · RANKING · AGENTS</p>
+            <p class="promise">
+                I work on search relevance at Atlassian — ranking, query understanding,
+                and the metrics that decide what ships. These days I build most things by
+                directing AI agents: they write the drafts, <b>I decide what passes</b>.
+                Before this, six years at Meta and four at eBay.
             </p>
-
-            <form class="query-bar" autocomplete="off" aria-label="Rank the field">
-                <span class="query-prompt" aria-hidden="true">q&nbsp;=</span>
-                <input id="query-input" type="text" name="q"
-                       aria-label="Type a query to re-rank the document field"
-                       spellcheck="false" maxlength="60"
-                       placeholder="">
-                <button type="submit">Rank</button>
-            </form>
-            <p class="query-hint">Type anything — the field behind this page re-ranks for every query.</p>
-
-            <div class="hero-actions" aria-label="Primary actions">
-                <a href="#lab">Explore the projects</a>
-                <a href="mailto:surah123@gmail.com">Start a conversation</a>
+            <div class="cta">
+                <a class="primary" href="#build">See what I build →</a>
+                <a class="ghost" href="#contact">Let's talk</a>
             </div>
         </div>
+        <span class="seal">嘉颖</span>
+    </div>
 
-        <a class="scroll-cue" href="#proof" aria-label="Scroll to expertise">
-            <span aria-hidden="true">↓</span>
-        </a>
-    </section>
+    <div class="spec-strip">
+        <aside class="spec">
+            <span class="ca"></span><span class="cb"></span>
+            <p class="title">SPEC.001 — SEARCH SCIENTIST</p>
+            <dl>
+                <dt>FOCUS</dt><dd>search relevance · ranking · query understanding</dd>
+                <dt>METHOD</dt><dd>metric design → experiment → diagnose → ship</dd>
+                <dt>AGENTS</dt><dd>directed, never trusted: every system passes an eval gate</dd>
+                <dt>LANG</dt><dd>EN · 中文 (code in English, 眉批 in Chinese)</dd>
+                <dt>EST.</dt><dd>2015 · eBay → Meta → Atlassian</dd>
+                <dt>OFF DUTY</dt><dd>hiking · <a href="plants.html">龟背竹, 春羽, ring of fire, succulents</a></dd>
+                <dt>ID</dt><dd>N 37°46′ · W 122°25′</dd>
+            </dl>
+        </aside>
+    </div>
 
-    <!-- ============ paper world begins ============ -->
-    <section id="record" class="section" aria-labelledby="record-title">
-        <p class="kicker">evidence first</p>
-        <h2 id="record-title">Track record</h2>
-        <ul class="record-list">
-            <li class="record-row" data-reveal>
-                <p class="record-org">Atlassian <span class="record-meta">Senior Data Scientist · Search Relevance · 2025–now</span></p>
-                <p class="record-claim">
-                    Built Atlassian's first end-to-end Search Metric Analysis Agent —
-                    <strong>2.5&times; investigation throughput</strong> with organic cross-org adoption —
-                    and revamped search quality metrics to session level, revealing a
-                    <strong>~10pp higher true success rate</strong> masked by reformulation miscounting.
-                </p>
-            </li>
-            <li class="record-row" data-reveal>
-                <p class="record-org">Meta <span class="record-meta">Data Scientist → Senior · 2019–2025</span></p>
-                <p class="record-claim">
-                    Delivered <strong>200K DAU + 1M daily sessions</strong> by closing Content Search
-                    quality gaps; uncovered <strong>$20M</strong> in revenue-loss recovery with an
-                    LLM outage-prevention prototype; led 3 data scientists to
-                    <strong>$30M</strong> infra cost savings.
-                </p>
-            </li>
-            <li class="record-row" data-reveal>
-                <p class="record-org">eBay <span class="record-meta">Senior Data Scientist · 2015–2019</span></p>
-                <p class="record-claim">
-                    Boosted paid marketing spend efficiency <strong>30%</strong> and reallocated
-                    <strong>$5M+</strong> of budget through channel-level measurement.
-                </p>
-            </li>
-        </ul>
-    </section>
-
-    <section id="proof" class="section" aria-labelledby="proof-title">
-        <p class="kicker">what I own</p>
-        <h2 id="proof-title">What I own</h2>
-        <dl class="proof-list" data-reveal>
-            <div class="proof-item proof-lead">
-                <dt>Search relevance &amp; ranking measurement</dt>
-                <dd>My deepest domain: turning messy query and session behavior into metrics teams trust — from metric definition through experimentation to the diagnostic systems that explain movement.</dd>
+    <section id="record">
+        <p class="kicker"><span class="zh">迹</span> RECORD</p>
+        <h2 class="giant" data-parallax>Record</h2>
+        <p class="lede">What I've actually done, minus the adjectives. Full numbers live in the resume.</p>
+        <div class="ledger">
+            <div class="row reveal">
+                <span class="no">01</span>
+                <span class="org">Atlassian<small>SENIOR DS · SEARCH RELEVANCE</small></span>
+                <span class="what">Built an agent that investigates search metric movement end to end; other orgs picked it up without being asked. Also rebuilt our success metric at the <b>session level</b> — query-level counting had been marking user retries as failures.</span>
+                <span class="yr">2025—NOW</span>
             </div>
-            <div class="proof-item">
-                <dt>Self-serve diagnostic systems</dt>
-                <dd>Concept-to-deployment tools that turn metric movement into repeatable root-cause workflows and concrete next actions.</dd>
+            <div class="row reveal">
+                <span class="no">02</span>
+                <span class="org">Meta<small>DS → SENIOR · SEARCH / ADS / INFRA</small></span>
+                <span class="what">Search, Ads, and infra reliability. The two I'd defend hardest: closing content-search quality gaps the topline dashboards couldn't explain, and an <b>LLM prototype that classified severe outages</b> before they spread.</span>
+                <span class="yr">2019—2025</span>
             </div>
-            <div class="proof-item">
-                <dt>AI and LLM system evaluation</dt>
-                <dd>Evaluation loops that connect human judgment, failure modes, and business outcomes so prototypes can earn deployment confidence.</dd>
+            <div class="row reveal">
+                <span class="no">03</span>
+                <span class="org">eBay<small>SENIOR DS · PAID MARKETING</small></span>
+                <span class="what">Paid marketing analytics — figuring out which <b>ad spend actually earned its keep</b>, and moving the budget that didn't.</span>
+                <span class="yr">2015—2019</span>
             </div>
-            <div class="proof-item">
-                <dt>Product-scale decisions</dt>
-                <dd>Metric design, experimentation, and causal analysis that help cross-functional teams decide what to build, ship, or stop.</dd>
-            </div>
-        </dl>
-        <p class="method-note">
-            The common thread: start from the decision a team needs to make, define the signal
-            that would make it trustworthy, build the system that produces it, and learn from
-            where the workflow breaks. The deliverable is not a notebook — it is a decision
-            capability other people can use.
-        </p>
-    </section>
-
-    <section id="lab" class="section" aria-labelledby="lab-title">
-        <p class="kicker">projects, ranked</p>
-        <h2 id="lab-title">Projects</h2>
-        <p class="section-lead">
-            Things I build by directing AI agents — each one shipped far enough to be
-            used, not just demoed. Ranked by how much I'd defend them in review.
-        </p>
-
-        <ol class="lab-list">
-            <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">01 <span class="rel">rel 0.99</span></p>
-                <div class="lab-body">
-                    <h3>Search Metric Analyzer</h3>
-                    <p>
-                        A public multi-agent system that turns search metric movement into structured,
-                        inspectable diagnosis — decompose, detect, diagnose, report, with evidence
-                        attached to every conclusion. I've built this system twice: first as Atlassian's
-                        in-house Search Metric Analysis Agent (2.5&times; investigation throughput),
-                        then rebuilt independently in the open so the full system can be inspected.
-                    </p>
-                    <p class="tech">Multi-agent · Deterministic analysis · <a href="https://search-metric-analyzer-demo.vercel.app/">Live demo</a> · <a href="https://search-metric-analyzer-demo.vercel.app/presentation">Presentation</a> · <a href="https://github.com/surahli123/search-metric-analyzer">Source</a></p>
-                </div>
-            </li>
-            <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">02 <span class="rel">rel 0.97</span></p>
-                <div class="lab-body">
-                    <h3>Guwen Reactor</h3>
-                    <p>
-                        An agent that adapts Classical Chinese texts into English — with a
-                        deterministic faithfulness gate, so creative liberty is measured against
-                        locked sources instead of vibes. Built as a Kaggle vibe-coding capstone;
-                        136 evaluation tests pass from a fresh clone.
-                    </p>
-                    <p class="tech">Python · Pydantic schemas · Eval gates · <a href="https://github.com/surahli123/guwen-reactor">Source</a></p>
-                </div>
-            </li>
-            <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">03 <span class="rel">rel 0.93</span></p>
-                <div class="lab-body">
-                    <h3>AI Writing Suite</h3>
-                    <p>
-                        An open-source writing-assistant skill suite: polish prose that sounds
-                        AI-written, learn an author's voice from samples, and draft against a
-                        pluggable knowledge base. Ships packaging for both Claude and Codex.
-                    </p>
-                    <p class="tech">Skills · Detector + eval harness · <a href="https://github.com/surahli123/ai-writing-suite">Source</a></p>
-                </div>
-            </li>
-            <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">04 <span class="rel">rel 0.90</span></p>
-                <div class="lab-body">
-                    <h3>Finance Analysis Workspace</h3>
-                    <p>
-                        A bilingual, privacy-conscious finance workflow that turns spreadsheet inputs
-                        into structured analysis and an executive review surface. Built as an
-                        end-to-end product, not a one-off analysis.
-                    </p>
-                    <p class="tech">Python · FastAPI · Pydantic · <a href="https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&amp;view=dashboard&amp;state=normal">Live demo</a></p>
-                </div>
-            </li>
-            <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">05 <span class="rel">rel 0.87</span></p>
-                <div class="lab-body">
-                    <h3>DS Productivity Agents</h3>
-                    <p>
-                        A plugin system for repeatable data science review, domain guidance, and
-                        evaluation. It packages analytical judgment into workflows that can be
-                        tested and improved.
-                    </p>
-                    <p class="tech">Python · Agent workflows · Evaluation · <a href="https://github.com/surahli123/ds-productivity-agents">Source</a></p>
-                </div>
-            </li>
-        </ol>
-    </section>
-
-    <section id="contact" class="section-tight" aria-labelledby="contact-title">
-        <p class="kicker">query me</p>
-        <h2 id="contact-title">Let's compare notes</h2>
-        <p class="section-lead">
-            I am interested in Search &amp; Ranking product roles where customer questions,
-            measurement, dataflow quality, and AI system evaluation belong to one end-to-end owner.
-        </p>
-        <div class="contact-links">
-            <a href="mailto:surah123@gmail.com">Email</a>
-            <a href="https://linkedin.com/in/surahli">LinkedIn</a>
-            <a href="https://github.com/surahli123">GitHub</a>
         </div>
     </section>
-</main>
 
-<footer>
-    <p class="colophon">
-        Built around public work and verifiable evidence. This site itself is
-        AI-directed development: designed and shipped by directing coding agents,
-        reviewed by hand. <a href="https://github.com/surahli123/surahli123.github.io">Source</a>.
-    </p>
-</footer>
+    <section id="build">
+        <p class="kicker"><span class="zh">造</span> BUILD — IN PUBLIC</p>
+        <h2 class="giant" data-parallax>Build</h2>
+        <p class="lede">Side projects, built by directing AI agents. Each one shown as it actually looks, with the test count it has to keep passing to stay listed.</p>
+        <div class="station">
+            <div class="st-row reveal">
+                <span class="thumb-wrap"><img class="thumb" loading="lazy" src="assets/thumb-sma.png" alt="Search Metric Analyzer product overview"></span>
+                <span class="p-name">Search Metric Analyzer<small>multi-agent · in-house first, then rebuilt in the open</small><span class="tests">420 tests passing</span></span>
+                <span class="p-desc">Diagnoses search metric movement: decompose, detect, diagnose, report. A public rebuild of the agent I made at work, so the whole system can be inspected.
+<span class="p-links"><a href="https://search-metric-analyzer-demo.vercel.app/">live demo</a><a href="https://github.com/surahli123/search-metric-analyzer">github</a><a href="#">case page →</a></span></span>
+                <span class="status"><i></i>LIVE</span>
+            </div>
+            <div class="st-row reveal">
+                <span class="thumb-wrap"><img class="thumb" loading="lazy" src="assets/thumb-guwen.png" alt="Guwen Reactor Kaggle cover"></span>
+                <span class="p-name">Guwen Reactor<small>classical chinese → english · kaggle capstone</small><span class="tests">136 tests passing</span></span>
+                <span class="p-desc">Adapts Classical Chinese stories into English. A deterministic check compares every output against locked sources and blocks anything invented.
+<span class="p-links"><a href="https://youtu.be/lLEzs0uBH8M">youtube</a><a href="https://github.com/surahli123/guwen-reactor">github</a><a href="guwen.html">case page →</a></span></span>
+                <span class="status"><i></i>LIVE</span>
+            </div>
+            <div class="st-row reveal">
+                <span class="thumb-wrap"><img class="thumb" loading="lazy" src="assets/thumb-travel-blurred.png" alt="Travel agent itinerary deck (details blurred)"></span>
+                <span class="p-name">Travel Agent<small>trip planning · agents + human gates</small><span class="tests">in daily use</span></span>
+                <span class="p-desc">Plans real trips end to end — itinerary decks, live condition checks, decision logs. It planned my last two trips.
+<span class="p-links"><a href="#">case page →</a></span></span>
+                <span class="status"><i></i>LIVE</span>
+            </div>
+            <div class="st-row reveal">
+                <span class="thumb-none">OSS · no UI</span>
+                <span class="p-name">AI Writing Suite<small>oss skill suite · claude + codex</small><span class="tests">65 tests passing</span></span>
+                <span class="p-desc">Flags AI-sounding prose, learns a writer's voice from samples, drafts from a knowledge base.
+<span class="p-links"><a href="https://github.com/surahli123/ai-writing-suite">github</a><a href="#">case page →</a></span></span>
+                <span class="status"><i></i>LIVE</span>
+            </div>
+            <div class="st-row reveal">
+                <span class="thumb-wrap"><img class="thumb" loading="lazy" src="assets/thumb-finance.png" alt="Finance analysis dashboard demo"></span>
+                <span class="p-name">Finance Analysis Workspace<small>bilingual · fastapi</small><span class="tests">live demo</span></span>
+                <span class="p-desc">Turns spreadsheets into an executive-ready analysis view. Bilingual.
+<span class="p-links"><a href="https://static-kit.vercel.app/demo/fuguang-agent-dashboard-v1.html?lang=en&view=dashboard&state=normal">live demo</a><a href="#">case page →</a></span></span>
+                <span class="status"><i></i>DEMO</span>
+            </div>
+        </div>
+    </section>
 
-<script src="js/main.js" type="module"></script>
+    <section id="teach">
+        <p class="kicker"><span class="zh">教</span> TEACH</p>
+        <h2 class="giant" data-parallax>Teach</h2>
+        <p class="lede">Tutorials and skills I made so other data scientists can work this way too.</p>
+        <div class="station">
+            <div class="st-row reveal" style="grid-template-columns:minmax(0,5fr) minmax(0,6fr) 1fr 110px;">
+                <span class="p-name">Directing subagents for DS work<small>course · live</small></span>
+                <span class="p-desc">How to split analysis work across AI subagents without losing rigor.</span>
+                <span></span>
+                <span class="status"><i></i>LIVE</span>
+            </div>
+            <div class="st-row reveal" style="grid-template-columns:minmax(0,5fr) minmax(0,6fr) 1fr 110px;">
+                <span class="p-name">Packaging judgment into skills<small>course · live</small></span>
+                <span class="p-desc">Turning repeatable analytical judgment into testable, reusable skills.</span>
+                <span></span>
+                <span class="status"><i></i>LIVE</span>
+            </div>
+            <div class="st-row reveal" style="grid-template-columns:minmax(0,5fr) minmax(0,6fr) 1fr 110px;">
+                <span class="p-name">DS Productivity Agents<small>plugin system · open source</small></span>
+                <span class="p-desc">Repeatable data science review, domain guidance, and evaluation, packaged as workflows that can be tested and improved.
+<span class="p-links"><a href="https://github.com/surahli123/ds-productivity-agents">github</a></span></span>
+                <span></span>
+                <span class="status"><i></i>LIVE</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="notes">
+        <p class="kicker"><span class="zh">写</span> WRITING</p>
+        <h2 class="giant" data-parallax>Notes</h2>
+        <p class="lede">Occasional notes on evals and search measurement. The first two are in progress.</p>
+        <div class="station">
+            <div class="st-row reveal" style="grid-template-columns:minmax(0,5fr) minmax(0,6fr) 1fr 110px;">
+                <span class="p-name">When query-level metrics mark retries as failures<small>measurement · session-level metrics</small></span>
+                <span class="p-desc">What our search metrics missed for two quarters, and how session-level counting surfaced it.</span>
+                <span></span>
+                <span class="status soon"><i></i>DRAFTING</span>
+            </div>
+            <div class="st-row reveal" style="grid-template-columns:minmax(0,5fr) minmax(0,6fr) 1fr 110px;">
+                <span class="p-name">How I decide an AI-built system is done<small>evals · agent direction</small></span>
+                <span class="p-desc">The checks I run before anything an agent wrote is allowed to ship.</span>
+                <span></span>
+                <span class="status soon"><i></i>OUTLINE</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact reveal" id="contact">
+        <span class="small">GET IN TOUCH / 联系</span>
+        <h2><span class="stroke">Let's talk.</span></h2>
+        <p>About search, evals, or building something together. · <span style="color:var(--accent)">●</span> open to Search &amp; Ranking roles</p>
+    </div>
+
+    <div class="marquee"><span class="track">迹 · RECORD · 造 · BUILD · 教 · TEACH · 写 · NOTES · 山 · TRAILS · 植 · PLANTS · SEARCH · RANKING · EVALS · 迹 · RECORD · 造 · BUILD · 教 · TEACH · 写 · NOTES · 山 · TRAILS · 植 · PLANTS · SEARCH · RANKING · EVALS · </span></div>
+
+    <footer>
+        <span>© 2026 李嘉颖 Jiaying Li · built the same way as everything above: agents draft, I review</span>
+        <span>merged build · fable base + codex grafts · hero is an ink-wash shanshui in three layers — the red backpack is the only red on the mountain</span>
+    </footer>
+</div>
+
+<script>
+(function () {
+    var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- scroll reveals + giant-word parallax (independent of hero motion) ---------- */
+    var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6%" });
+    document.querySelectorAll(".reveal, .contact").forEach(function (el) { io.observe(el); });
+    // jump-scrolls (anchors, PageDown) can hop past an element between IO checks —
+    // anything fully above the viewport is revealed unconditionally
+    addEventListener("scroll", function () {
+        document.querySelectorAll(".reveal:not(.in), .contact:not(.in)").forEach(function (el) {
+            if (el.getBoundingClientRect().bottom < 0) el.classList.add("in");
+        });
+    }, { passive: true });
+
+    if (reduced) return;
+
+    var giants = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+    var layers = Array.prototype.slice.call(document.querySelectorAll(".shanshui .layer"));
+    var loaded = false;
+    // hand transforms over to JS only after the entrance animations finish,
+    // otherwise the parallax transform would stomp the layerin keyframes
+    setTimeout(function () {
+        layers.forEach(function (l) { l.style.animation = "none"; l.style.opacity = "1"; });
+        loaded = true;
+    }, 1800);
+
+    var px = 0, py = 0, tx = 0, ty = 0;   // pointer parallax target/current
+    var heroEl = document.querySelector(".hero");
+    var fine = matchMedia("(pointer: fine)").matches;
+    if (fine) {
+        heroEl.addEventListener("pointermove", function (e) {
+            var b = heroEl.getBoundingClientRect();
+            tx = ((e.clientX - b.left) / b.width) * 2 - 1;   // -1 .. 1
+            ty = ((e.clientY - b.top) / b.height) * 2 - 1;
+        });
+        heroEl.addEventListener("pointerleave", function () { tx = 0; ty = 0; });
+    }
+
+    function frame() {
+        px += (tx - px) * 0.06;                              // lerp: no jitter
+        py += (ty - py) * 0.06;
+        // cap parallax travel — once the hero has scrolled away, stop moving the layers
+        var sy = Math.min(scrollY, heroEl.offsetHeight * 1.15);
+        if (loaded) {
+            layers.forEach(function (l) {
+                var depth = parseFloat(l.dataset.depth);     // far lags most
+                var amp = parseFloat(l.dataset.px);
+                l.style.transform = "translate3d(" + (-px * amp) + "px," +
+                    (sy * depth + -py * amp * 0.5) + "px,0)";
+            });
+        }
+        var vh = innerHeight;
+        giants.forEach(function (g) {
+            var r = g.getBoundingClientRect();
+            var prog = 1 - Math.min(Math.max(r.top / vh, 0), 1);
+            g.style.transform = "translateX(" + (prog * 28 - 14) + "px)";
+        });
+        requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>

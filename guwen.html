@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guwen Reactor — case page · Jiaying Li</title>
+<style>
+:root{
+  --paper:#F4EFE6;--ink:#1A1714;--ink-soft:#3a342d;--accent:#C0392B;
+  --line:#C9C0B2;--muted:#7d756a;
+  --serif:"Didot","Bodoni 72",'Songti SC',serif;--serif-cjk:'Songti SC',serif;
+  --sans:"Avenir Next",'PingFang SC',sans-serif;--mono:Menlo,monospace;
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+html,body{background:var(--paper);}
+body{margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(rgba(26,23,20,.025) 1px,transparent 1px);background-size:3px 3px;}
+.page{max-width:1080px;margin:0 auto;padding:0 clamp(28px,4.5vw,64px);}
+nav{display:flex;justify-content:space-between;align-items:center;min-height:76px;border-bottom:1px solid var(--line);
+  font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;}
+nav .brand{font-family:var(--serif);font-size:24px;letter-spacing:0;text-transform:none;font-weight:600;}
+nav a{color:var(--ink-soft);text-decoration:none;}
+nav a:hover{color:var(--accent);}
+.head{padding:64px 0 8px;}
+.kicker{display:flex;align-items:center;gap:14px;margin:0 0 8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;}
+.kicker .zh{font-family:var(--serif-cjk);font-size:17px;}
+.kicker::after{content:"";flex:0 0 44px;height:1px;background:var(--accent);}
+h1{margin:0 0 12px;font-family:var(--serif);font-weight:600;font-size:clamp(52px,7vw,96px);line-height:1;}
+.standfirst{max-width:62ch;font-size:18px;color:var(--ink-soft);margin:0 0 18px;}
+.links{font-family:var(--mono);font-size:12.5px;margin:0 0 40px;}
+.links a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(192,57,43,.35);margin-right:18px;}
+.meta{display:flex;gap:26px;font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.08em;margin-bottom:44px;}
+.video{position:relative;width:100%;aspect-ratio:16/9;border:1px solid var(--line);background:#000;}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.cap{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:10px 0 0;}
+section{padding:56px 0 0;}
+h2{margin:0 0 10px;font-family:var(--serif);font-weight:600;font-size:30px;}
+p.body{max-width:66ch;color:var(--ink-soft);margin:0 0 18px;}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px;}
+.shots figure{margin:0;}
+.shots img{width:100%;border:1px solid var(--line);display:block;background:#fff;}
+.shots figcaption{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:8px;}
+.gate{
+  margin-top:44px;border:1px solid var(--line);background:rgba(255,255,255,.4);padding:24px 26px;
+  font-family:var(--mono);font-size:13px;position:relative;
+}
+.gate::before{content:"+";position:absolute;top:-9px;left:-7px;color:var(--accent);}
+.gate::after{content:"+";position:absolute;bottom:-10px;right:-7px;color:var(--accent);}
+.gate .t{color:var(--accent);letter-spacing:.18em;font-size:11px;margin:0 0 12px;}
+.gate ol{margin:0;padding-left:1.3em;display:grid;gap:6px;color:var(--ink-soft);}
+footer{margin-top:72px;padding:22px 0 40px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;}
+@media (max-width:720px){.shots{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="page">
+    <nav>
+        <span class="brand">Jiaying Li</span>
+        <a href="index.html">← back to all projects</a>
+    </nav>
+
+    <div class="head">
+        <p class="kicker"><span class="zh">造</span> CASE PAGE</p>
+        <h1>Guwen Reactor</h1>
+        <p class="standfirst">
+            An agent that adapts Classical Chinese stories into English — with a deterministic
+            faithfulness check that compares every output against locked sources and blocks
+            anything invented. Built as a Kaggle "Agents for Good" capstone.
+        </p>
+        <p class="links">
+            <a href="https://youtu.be/lLEzs0uBH8M">watch the video</a>
+            <a href="https://github.com/surahli123/guwen-reactor">github.com/surahli123/guwen-reactor</a>
+        </p>
+        <div class="meta"><span>2026-06 → 07</span><span>PYTHON · PYDANTIC</span><span>136 TESTS PASS FROM A FRESH CLONE</span></div>
+    </div>
+
+    <div class="video">
+        <iframe src="https://www.youtube.com/embed/lLEzs0uBH8M" title="Guwen Reactor — competition video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="cap">The three-minute competition video: what it does, and the moment the gate catches a planted hallucination.</p>
+
+    <section>
+        <h2>Why a faithfulness gate</h2>
+        <p class="body">
+            Adaptation wants creative freedom; classical sources demand accuracy. Instead of
+            asking one model to balance both, the system splits the jobs: an adapter writes
+            freely, a decoder explains the cultural context, and a deterministic checker
+            compares every claim against the locked source text. If a detail isn't in the
+            source, the export is blocked — no judgment call, no vibes.
+        </p>
+        <div class="shots">
+            <figure>
+                <img src="assets/guwen-provenance.png" alt="Provenance card showing source-anchored claims">
+                <figcaption>Every claim carries its provenance back to the source passage.</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/guwen-rulecheck.png" alt="Live rule check with all checks passing">
+                <figcaption>The live rule check — planted hallucinations must be caught before export.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section>
+        <div class="gate">
+            <p class="t">HOW IT WAS BUILT</p>
+            <ol>
+                <li>Directed three agent lanes (Antigravity, Claude Code, Codex) against one locked spec</li>
+                <li>Chinese-anchored gold scenes decided disputes — not my taste, not the model's</li>
+                <li>136 evaluation tests gate every change; a fresh clone must pass all of them</li>
+            </ol>
+        </div>
+    </section>
+
+    <footer>
+        <span>© 2026 李嘉颖 Jiaying Li</span>
+        <span>case-page pattern — every project gets one of these</span>
+    </footer>
+</div>
+</body>
+</html>

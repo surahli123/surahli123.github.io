@@ -1,0 +1,12 @@
+Self-hosted webfonts, all licensed under the SIL Open Font License 1.1:
+
+- Bodoni Moda — Copyright 2020 The Bodoni Moda Project Authors
+  https://github.com/owfonts/bodoni-moda
+- Noto Serif SC (subset: 27 CJK glyphs used on this site) — Copyright 2022 Adobe / The Noto Project Authors
+  https://fonts.google.com/noto/specimen/Noto+Serif+SC
+- Hanken Grotesk — Copyright 2020 The Hanken Grotesk Project Authors
+  https://github.com/marcologous/hanken-grotesk
+- Spline Sans Mono — Copyright 2021 The Spline Sans Mono Project Authors
+  https://github.com/SorkinType/SplineSansMono
+
+Full OFL 1.1 text: https://openfontlicense.org

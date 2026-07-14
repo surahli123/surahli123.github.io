@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Garden · 植 — Jiaying Li</title>
+<style>
+@font-face{font-family:"Bodoni Moda";src:url("assets/fonts/bodoni-moda-600.woff2") format("woff2");font-weight:500 700;font-display:swap;}
+@font-face{font-family:"Noto Serif SC";src:url("assets/fonts/noto-serif-sc-600-subset.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Hanken Grotesk";src:url("assets/fonts/hanken-grotesk-400.woff2") format("woff2");font-weight:400;font-display:swap;}
+@font-face{font-family:"Hanken Grotesk";src:url("assets/fonts/hanken-grotesk-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Spline Sans Mono";src:url("assets/fonts/spline-sans-mono-400.woff2") format("woff2");font-weight:400 500;font-display:swap;}
+:root{
+  --paper:#F4EFE6;
+  --ink:#1A1714;
+  --ink-soft:#3a342d;
+  --accent:#C0392B;
+  --line:#C9C0B2;
+  --muted:#7d756a;
+  --serif:"Bodoni Moda","Didot","Bodoni 72",'Songti SC',serif;
+  --serif-cjk:"Noto Serif SC",'Songti SC',serif;
+  --sans:"Hanken Grotesk","Avenir Next",'PingFang SC',sans-serif;
+  --mono:"Spline Sans Mono",Menlo,monospace;
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+html,body{background:var(--paper);}
+body{
+  margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(rgba(26,23,20,.025) 1px,transparent 1px);
+  background-size:3px 3px;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* .page must NOT create a stacking context — the paintings' mix-blend-mode:darken
+   needs to reach the body's paper + dot-grid backdrop to composite seamlessly */
+.page{position:relative;max-width:1320px;margin:0 auto;padding:0 clamp(28px,4.5vw,64px);}
+nav{
+  display:flex;justify-content:space-between;align-items:center;min-height:76px;
+  border-bottom:1px solid var(--line);
+  font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+}
+nav .brand{font-family:var(--serif);font-size:24px;letter-spacing:0;text-transform:none;font-weight:600;}
+nav .brand a{color:var(--ink);text-decoration:none;}
+nav .back a{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.12em;}
+nav .back a:hover{color:var(--accent);}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ---------- garden hero: the painting finishes itself ---------- */
+.garden{position:relative;min-height:86vh;display:flex;align-items:center;overflow:hidden;}
+.garden .painting{
+  position:absolute;right:clamp(-40px,-2vw,0px);bottom:0;z-index:0;
+  width:min(52vw,760px);pointer-events:none;
+  mix-blend-mode:darken;
+  clip-path:inset(100% 0 0 0);
+}
+.garden .painting.in{animation:brush 1100ms var(--ease-out) 250ms forwards;}
+@keyframes brush{to{clip-path:inset(0 0 0 0);}}
+.garden-inner{position:relative;z-index:2;max-width:640px;padding:60px 0;}
+.garden h1{
+  margin:0;font-family:var(--serif);font-weight:600;
+  font-size:clamp(72px,10vw,150px);line-height:.96;letter-spacing:-.01em;
+}
+.garden h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em;}
+.garden h1 .word span{display:inline-block;transform:translateY(110%);animation:rise 900ms var(--ease-out) 100ms forwards;}
+@keyframes rise{to{transform:translateY(0)}}
+.zh-kicker{
+  display:flex;align-items:center;gap:12px;margin:18px 0 20px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;color:var(--accent);
+  opacity:0;animation:fadein 700ms var(--ease-out) 500ms forwards;
+}
+@keyframes fadein{to{opacity:1}}
+.zh-kicker::after{content:"";flex:0 0 56px;height:1px;background:var(--accent);}
+.zh-kicker .zh{font-family:var(--serif-cjk);font-size:17px;letter-spacing:.3em;}
+.garden .note{
+  max-width:38ch;font-size:18px;line-height:1.9;color:var(--ink-soft);margin:0;
+  opacity:0;animation:fadein 700ms var(--ease-out) 700ms forwards;
+}
+
+/* ---------- the four residents ---------- */
+.residents{padding:20px 0 40px;}
+.residents .head{
+  display:flex;align-items:baseline;gap:18px;border-top:1px solid var(--ink);padding-top:18px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;
+}
+.plant{
+  display:grid;grid-template-columns:90px minmax(0,5fr) minmax(0,6fr);
+  gap:30px;align-items:start;padding:34px 4px;border-bottom:1px solid var(--line);
+}
+.plant .zh{
+  font-family:var(--serif-cjk);font-size:44px;line-height:1.15;color:var(--ink);
+  writing-mode:vertical-rl;letter-spacing:.14em;
+  height:180px;   /* one full column — too short and vertical-rl wraps into reversed columns */
+}
+.plant .zh em{font-style:normal;color:var(--accent);}
+.plant .name{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.25;}
+.plant .name small{display:block;font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted);letter-spacing:.1em;margin-top:6px;text-transform:uppercase;}
+.plant .line{font-size:15px;color:var(--ink-soft);max-width:52ch;}
+/* offset alternate rows — an editorial garden path, not a grid */
+.plant:nth-child(odd){margin-left:clamp(0px,6vw,110px);}
+
+/* ---------- closing corner ---------- */
+.corner{position:relative;min-height:52vh;display:flex;align-items:flex-end;justify-content:flex-start;overflow:hidden;padding-bottom:40px;}
+.corner img{
+  position:absolute;left:clamp(-30px,-1vw,0px);bottom:0;width:min(34vw,380px);
+  mix-blend-mode:darken;pointer-events:none;
+  clip-path:inset(100% 0 0 0);
+}
+.corner img.in{animation:brush 900ms var(--ease-out) forwards;}
+.corner .caption{
+  position:relative;z-index:2;margin-left:clamp(200px,38vw,460px);
+  font-family:var(--mono);font-size:12.5px;color:var(--muted);max-width:44ch;line-height:2;
+}
+.corner .caption .seal{
+  display:inline-grid;place-items:center;width:44px;height:44px;margin-top:14px;
+  background:var(--accent);color:var(--paper);writing-mode:vertical-rl;
+  font-family:var(--serif-cjk);font-size:16px;border-radius:3px;transform:rotate(-6deg);
+}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 650ms var(--ease-out),transform 650ms var(--ease-out);}
+.reveal.in{opacity:1;transform:none;}
+
+footer{display:flex;justify-content:space-between;gap:20px;padding:22px 0 40px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted);}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0ms !important;transition-duration:.01ms !important;}
+  .garden h1 .word span{transform:none;}
+  .zh-kicker,.garden .note{opacity:1;}
+  .garden .painting,.corner img{clip-path:inset(0 0 0 0);}
+  .reveal{opacity:1;transform:none;}
+}
+@media (max-width:760px){
+  .garden{min-height:auto;align-items:flex-start;}
+  .garden .painting{position:relative;display:block;width:88%;margin:0 auto;right:auto;order:2;}
+  .garden{flex-direction:column;}
+  .garden-inner{padding:48px 0 8px;}
+  .plant{grid-template-columns:56px 1fr;gap:18px;}
+  .plant .line{grid-column:1 / -1;}
+  .plant:nth-child(odd){margin-left:0;}
+  .corner .caption{margin-left:0;padding-left:clamp(160px,44vw,220px);}
+}
+</style>
+</head>
+<body>
+<div class="page">
+    <nav>
+        <span class="brand"><a href="index.html">Jiaying Li</a></span>
+        <span class="back"><a href="index.html">← 山 · BACK TO THE MOUNTAINS</a></span>
+    </nav>
+
+    <div class="garden">
+        <img class="painting" src="assets/ink/ink-monstera.webp" alt="Ink-wash painting of monstera and philodendron selloum leaves" id="hero-painting">
+        <div class="garden-inner">
+            <h1><span class="word"><span>The Garden</span></span></h1>
+            <p class="zh-kicker"><span class="zh">植</span> SAME BRUSH · SECOND PAINTING</p>
+            <p class="note">
+                The landing page paints the mountains I walk on weekends.
+                This page is what grows at home in between — four residents,
+                painted with the same ink.
+            </p>
+        </div>
+    </div>
+
+    <div class="residents">
+        <p class="head">RESIDENTS · 四位住户</p>
+        <div class="plant reveal">
+            <span class="zh">龟背竹</span>
+            <span class="name">Monstera deliciosa<small>the split-leaf one</small></span>
+            <span class="line">The biggest resident. Each new leaf unrolls from a spike and opens with more splits and windows than the one before it.</span>
+        </div>
+        <div class="plant reveal">
+            <span class="zh">春羽</span>
+            <span class="name">Philodendron selloum<small>the fountain</small></span>
+            <span class="line">A fountain of deeply lobed leaves on long arching stems. It doesn't climb — it spreads, and keeps negotiating for more floor.</span>
+        </div>
+        <div class="plant reveal">
+            <span class="zh"><em>焰</em></span>
+            <span class="name">Philodendron Ring of Fire<small>the slow one</small></span>
+            <span class="line">Serrated, variegated, and famously slow. Weeks of nothing, then one new leaf — and no two leaves ever carry the same pattern.</span>
+        </div>
+        <div class="plant reveal">
+            <span class="zh">多肉</span>
+            <span class="name">Succulents<small>the quiet bench</small></span>
+            <span class="line">A small cluster in shallow pots. They hold their own water and their own counsel — the most forgiving thing in the room.</span>
+        </div>
+    </div>
+
+    <div class="corner">
+        <img src="assets/ink/ink-succulent.webp" alt="Ink-wash painting of a potted succulent cluster" id="corner-painting">
+        <p class="caption">
+            Mountains on weekends, leaves on weekdays.
+            Both are the same practice: pay attention for long enough,
+            and slow things turn out to be moving.
+            <span class="seal">嘉颖</span>
+        </p>
+    </div>
+
+    <footer>
+        <span>© 2026 李嘉颖 Jiaying Li</span>
+        <span><a href="index.html" style="color:inherit;">index · 山</a></span>
+    </footer>
+</div>
+
+<script>
+(function () {
+    var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+            if (e.isIntersecting) {
+                e.target.classList.add("in");
+                // fully clip-path-ed children never intersect on their own —
+                // observe the container, reveal the painting inside it
+                e.target.querySelectorAll(".painting, img").forEach(function (img) {
+                    img.classList.add("in");
+                });
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6%" });
+    document.querySelectorAll(".reveal, .garden, .corner").forEach(function (el) { io.observe(el); });
+    // jump-scrolls (anchors, PageDown) can hop past an element between IO checks —
+    // anything fully above the viewport is revealed unconditionally
+    addEventListener("scroll", function () {
+        document.querySelectorAll(".reveal:not(.in)").forEach(function (el) {
+            if (el.getBoundingClientRect().bottom < 0) el.classList.add("in");
+        });
+    }, { passive: true });
+})();
+</script>
+</body>
+</html>
