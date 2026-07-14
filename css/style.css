@@ -531,91 +531,6 @@ h2 {
     color: var(--muted);
 }
 
-/* selected work — the investigation */
-.project-tagline {
-    color: var(--ink);
-}
-
-.featured-project {
-    display: grid;
-    gap: var(--space-xl);
-}
-
-.case-step {
-    display: grid;
-    grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
-    gap: var(--space-md) var(--space-lg);
-    align-items: start;
-}
-
-.case-label {
-    margin: 0;
-    font-family: var(--mono);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--signal-deep);
-    padding-top: 0.5em;
-}
-
-.case-step > p,
-.case-step > .case-stages {
-    grid-column: 2;
-    margin: 0;
-    max-width: var(--prose-width);
-}
-
-.case-step > .case-label {
-    grid-column: 1;
-    grid-row: 1 / span 10;
-}
-
-.case-stages {
-    padding-left: 1.4em;
-    display: grid;
-    gap: var(--space-xs);
-    color: var(--muted);
-}
-
-.case-stages strong {
-    color: var(--ink);
-    font-family: var(--display);
-    font-weight: 600;
-}
-
-.case-step .project-media {
-    grid-column: 2;
-}
-
-.project-media {
-    margin: var(--space-sm) 0 0;
-}
-
-.project-media img {
-    border: 1px solid var(--hairline);
-}
-
-.project-media a {
-    display: block;
-}
-
-.project-media figcaption {
-    margin-top: var(--space-xs);
-    font-family: var(--mono);
-    font-size: var(--text-sm);
-    color: var(--muted);
-}
-
-.project-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm) var(--space-md);
-    padding-top: var(--space-md);
-    border-top: 1px solid var(--hairline);
-}
-
-.project-links a,
 .contact-links a {
     display: inline-flex;
     align-items: center;
@@ -628,7 +543,6 @@ h2 {
     text-decoration: none;
 }
 
-.project-links a:hover,
 .contact-links a:hover {
     background: var(--ink);
     color: var(--paper);
@@ -772,21 +686,9 @@ footer {
         gap: 12px;
     }
 
-    .case-step,
     .lab-entry,
     .record-row {
         grid-template-columns: 1fr;
-    }
-
-    .case-step > .case-label {
-        grid-row: auto;
-        padding-top: 0;
-    }
-
-    .case-step > p,
-    .case-step > .case-stages,
-    .case-step .project-media {
-        grid-column: 1;
     }
 
     .lab-rank .rel {

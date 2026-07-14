@@ -75,8 +75,7 @@
         <a class="name" href="#main-content">Jiaying Li</a>
         <div class="links">
             <a href="#record">Track record</a>
-            <a href="#selected-work">Selected work</a>
-            <a href="#lab">The lab</a>
+            <a href="#lab">Projects</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -114,7 +113,7 @@
             <p class="query-hint">Type anything — the field behind this page re-ranks for every query.</p>
 
             <div class="hero-actions" aria-label="Primary actions">
-                <a href="#selected-work">Explore selected work</a>
+                <a href="#lab">Explore the projects</a>
                 <a href="mailto:surah123@gmail.com">Start a conversation</a>
             </div>
         </div>
@@ -186,103 +185,31 @@
         </p>
     </section>
 
-    <section id="selected-work" class="section-spacious" aria-labelledby="selected-work-title">
-        <p class="kicker">investigation №1</p>
-        <h2 id="selected-work-title">Search Metric Analyzer</h2>
-        <p class="section-lead project-tagline">
-            A public multi-agent system for turning search metric movement into structured diagnosis.
-        </p>
-
-        <article class="featured-project">
-            <div class="case-step" data-reveal>
-                <h3 class="case-label">Question</h3>
-                <p>
-                    Search quality shifts rarely have one obvious cause. The evidence sits across
-                    segments, metrics, ranking behavior, and product context. How does an analyst move
-                    from "the metric moved" to a ranked set of hypotheses — without losing the evidence
-                    along the way?
-                </p>
-            </div>
-
-            <div class="case-step" data-reveal>
-                <h3 class="case-label">Approach</h3>
-                <p>
-                    I have built this system twice. The first version is Atlassian's in-house Search
-                    Metric Analysis Agent, which raised investigation throughput 2.5&times;. Search
-                    Metric Analyzer is the second: rebuilt independently, in the open, so the full
-                    system can be inspected — deterministic analysis where correctness matters,
-                    specialist agents where interpretation helps, and a product surface that keeps
-                    evidence attached to conclusions.
-                </p>
-                <ol class="case-stages">
-                    <li><strong>Decompose</strong> — isolate which segments drove the movement.</li>
-                    <li><strong>Detect</strong> — compare step changes and co-movement across metrics.</li>
-                    <li><strong>Diagnose</strong> — evaluate competing patterns with explicit confidence.</li>
-                    <li><strong>Report</strong> — produce a structured investigation with next actions.</li>
-                </ol>
-                <figure class="project-media" data-reveal>
-                    <img
-                        src="assets/sma-workflow.svg"
-                        width="1200"
-                        height="420"
-                        loading="lazy"
-                        alt="Search Metric Analyzer workflow from metric decomposition through pattern detection, diagnosis, and an evidence-linked report"
-                    >
-                </figure>
-            </div>
-
-            <div class="case-step" data-reveal>
-                <h3 class="case-label">Evidence</h3>
-                <figure class="project-media">
-                    <a href="https://search-metric-analyzer-demo.vercel.app/">
-                        <img
-                            src="assets/sma-overview.png"
-                            width="1440"
-                            height="1000"
-                            loading="lazy"
-                            alt="Search Metric Analyzer overview showing a within-variance result, evaluated hypotheses, and supporting metric evidence"
-                        >
-                    </a>
-                    <figcaption>
-                        The public overview keeps the result, hypothesis evaluation, and supporting
-                        evidence together.
-                    </figcaption>
-                </figure>
-                <figure class="project-media">
-                    <a href="https://search-metric-analyzer-demo.vercel.app/">
-                        <img
-                            src="assets/sma-report.png"
-                            width="1440"
-                            height="1000"
-                            loading="lazy"
-                            alt="Search Metric Analyzer report showing a metric comparison table, component changes, and a time-series trend"
-                        >
-                    </a>
-                    <figcaption>
-                        The report connects the conclusion to component movement and trend evidence.
-                    </figcaption>
-                </figure>
-            </div>
-
-            <div class="project-links" aria-label="Search Metric Analyzer links">
-                <a href="https://search-metric-analyzer-demo.vercel.app/">Live demo</a>
-                <a href="https://search-metric-analyzer-demo.vercel.app/presentation">Presentation</a>
-                <a href="https://github.com/surahli123/search-metric-analyzer">Source</a>
-            </div>
-        </article>
-    </section>
-
     <section id="lab" class="section" aria-labelledby="lab-title">
-        <p class="kicker">side work, ranked</p>
-        <h2 id="lab-title">The lab</h2>
+        <p class="kicker">projects, ranked</p>
+        <h2 id="lab-title">Projects</h2>
         <p class="section-lead">
-            Side projects I build by directing AI agents — each one shipped far enough
-            to be used, not just demoed. Ranked by how much I'd defend them in review.
+            Things I build by directing AI agents — each one shipped far enough to be
+            used, not just demoed. Ranked by how much I'd defend them in review.
         </p>
 
         <ol class="lab-list">
             <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">01 <span class="rel">rel 0.97</span></p>
+                <p class="lab-rank" aria-hidden="true">01 <span class="rel">rel 0.99</span></p>
+                <div class="lab-body">
+                    <h3>Search Metric Analyzer</h3>
+                    <p>
+                        A public multi-agent system that turns search metric movement into structured,
+                        inspectable diagnosis — decompose, detect, diagnose, report, with evidence
+                        attached to every conclusion. I've built this system twice: first as Atlassian's
+                        in-house Search Metric Analysis Agent (2.5&times; investigation throughput),
+                        then rebuilt independently in the open so the full system can be inspected.
+                    </p>
+                    <p class="tech">Multi-agent · Deterministic analysis · <a href="https://search-metric-analyzer-demo.vercel.app/">Live demo</a> · <a href="https://search-metric-analyzer-demo.vercel.app/presentation">Presentation</a> · <a href="https://github.com/surahli123/search-metric-analyzer">Source</a></p>
+                </div>
+            </li>
+            <li class="lab-entry" data-reveal>
+                <p class="lab-rank" aria-hidden="true">02 <span class="rel">rel 0.97</span></p>
                 <div class="lab-body">
                     <h3>Guwen Reactor</h3>
                     <p>
@@ -295,7 +222,7 @@
                 </div>
             </li>
             <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">02 <span class="rel">rel 0.93</span></p>
+                <p class="lab-rank" aria-hidden="true">03 <span class="rel">rel 0.93</span></p>
                 <div class="lab-body">
                     <h3>AI Writing Suite</h3>
                     <p>
@@ -307,7 +234,7 @@
                 </div>
             </li>
             <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">03 <span class="rel">rel 0.90</span></p>
+                <p class="lab-rank" aria-hidden="true">04 <span class="rel">rel 0.90</span></p>
                 <div class="lab-body">
                     <h3>Finance Analysis Workspace</h3>
                     <p>
@@ -319,7 +246,7 @@
                 </div>
             </li>
             <li class="lab-entry" data-reveal>
-                <p class="lab-rank" aria-hidden="true">04 <span class="rel">rel 0.87</span></p>
+                <p class="lab-rank" aria-hidden="true">05 <span class="rel">rel 0.87</span></p>
                 <div class="lab-body">
                     <h3>DS Productivity Agents</h3>
                     <p>
